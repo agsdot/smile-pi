@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "bootstrap.sh", privileged: true
 	config.vm.provision "shell", path: "basic_package.sh", privileged: false
 	config.vm.provision "shell", path: "smile_preparation.sh", privileged: false
+	config.vm.provision "shell", path: "smile_setup.sh", privileged: false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
