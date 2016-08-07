@@ -2,11 +2,12 @@
 
 HOME="/home/vagrant"
 echo "$HOME"
-sudo pacman -S --noconfirm --needed yes unzip
+sudo pacman -S --noconfirm --needed yes
+sudo pacman -S --noconfirm --needed unzip
+sudo pacman -S --noconfirm --needed tmux
 
 echo "clone the plug branch of the smile_v2 repo"
 
-rm -rf ~/smile_v2
 if [ ! -d "~/smile_v2" ]; then
   cd
   git clone https://bitbucket.org/smileconsortium/smile_v2.git
@@ -67,3 +68,32 @@ sudo mv /tmp/elasticsearch-river-couchdb /usr/share/elasticsearch/plugins/elasti
 echo "cleanup tmp dir"
 cd /tmp
 sudo rm -rf *
+
+echo "install ~/smile_v2/backend node dependencies"
+cd ~/smile_v2/backend/
+
+#version of hiredis can be changed in package.json
+sudo sed -i 's@0.1.17@0.5.0@' package.json
+
+npm install
+
+echo "npm packages put in"
+
+####items below need to be tested more####
+####test with node main.js in the backend folder with redis-server running###
+
+echo "systemctl for couch"
+sudo systemctl enable couchdb
+sudo systemctl start couchdb
+
+echo "systemctl for elasticsearch"
+sudo systemctl enable elasticsearch
+sudo systemctl start elasticsearch
+
+#echo "systemctl for smile_backend"
+#sudo systemctl enable smile_backend
+#sudo systemctl start smile_backend
+
+echo "systemctl for nginx"
+sudo systemctl enable nginx
+sudo systemctl start nginx
