@@ -2,6 +2,7 @@
 
 HOME="/home/vagrant"
 echo "$HOME"
+sudo pacman -S --noconfirm --needed yes unzip
 
 echo "clone the plug branch of the smile_v2 repo"
 
@@ -26,3 +27,43 @@ cp ~/smile_v2/vagrant/smile_backend.service /tmp/smile_backend.service
 sed -i 's@/vagrant@'"$HOME"/smile_v2'@' /tmp/smile_backend.service
 sudo cp /tmp/smile_backend.service /usr/lib/systemd/system/smile_backend.service
 
+echo "configure elasticsearch"
+
+sudo mkdir -p /var/lib/elasticsearch
+sudo chown elasticsearch /var/lib/elasticsearch
+sudo chgrp elasticsearch /var/lib/elasticsearch
+sudo cp ~/smile_v2/vagrant/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
+
+#sudo unzip  analysis-icu*.zip -d analysis-icu/
+
+cd /usr/share/elasticsearch/plugins/
+sudo rm -rf *
+
+echo "get elasticsearch marvel-agent plugin"
+yes | sudo elasticsearch-plugin install marvel-agent
+
+echo "get elasticsearch-river-couchdb"
+cd /tmp
+sudo rm -rf *
+
+sudo elasticsearch-plugin install elasticsearch/elasticsearch-river-couchdb/2.6.0 > /dev/null
+sudo unzip elasticsearch-river-couchdb*.zip -d elasticsearch-river-couchdb
+
+touch  /tmp/plugin-descriptor.properties
+echo "
+description=Elasticsearch River Couchdb
+version=2.6.0
+name=elasticsearch-river-couchdb
+site=false
+jvm=true
+classname=org.elasticsearch.plugin.river.couchdb.CouchdbRiverPlugin
+java.version=1.7
+elasticsearch.version=2.3.5
+isolated=false
+" >> /tmp/plugin-descriptor.properties
+sudo cp /tmp/plugin-descriptor.properties /tmp/elasticsearch-river-couchdb/plugin-descriptor.properties
+sudo mv /tmp/elasticsearch-river-couchdb /usr/share/elasticsearch/plugins/elasticsearch-river-couchdb
+
+echo "cleanup tmp dir"
+cd /tmp
+sudo rm -rf *
