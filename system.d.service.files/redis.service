@@ -1,0 +1,13 @@
+[Unit]
+Description=redis-server
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/redis-server
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

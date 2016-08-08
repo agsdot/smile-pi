@@ -90,10 +90,23 @@ echo "systemctl for elasticsearch"
 sudo systemctl enable elasticsearch
 sudo systemctl start elasticsearch
 
-#echo "systemctl for smile_backend"
-#sudo systemctl enable smile_backend
-#sudo systemctl start smile_backend
-
+#why permissions issues?
 echo "systemctl for nginx"
 sudo systemctl enable nginx
 sudo systemctl start nginx
+
+cd ~/vagrant-archbox/system.d.service.files/
+sudo cp create_ap.service /usr/lib/systemd/system/create_ap.service
+sudo cp redis.service /usr/lib/systemd/system/redis.service
+
+echo "systemctl for redis"
+sudo systemctl enable redis
+sudo systemctl start redis
+
+echo "systemctl for smile_backend"
+sudo systemctl enable smile_backend
+sudo systemctl start smile_backend
+
+echo "systemctl for create_ap"
+sudo systemctl enable create_ap
+sudo systemctl start create_ap
