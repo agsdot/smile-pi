@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-HOME="/home/vagrant"
-echo "$HOME"
-sudo pacman -S --noconfirm --needed yes
 sudo pacman -S --noconfirm --needed unzip
+
 sudo pacman -S --noconfirm --needed tmux
+sudo sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen
+sudo locale-gen
 
 echo "clone the plug branch of the smile_v2 repo"
 
@@ -41,7 +41,7 @@ cd /usr/share/elasticsearch/plugins/
 sudo rm -rf *
 
 echo "get elasticsearch marvel-agent plugin"
-yes | sudo elasticsearch-plugin install marvel-agent
+echo y | sudo elasticsearch-plugin install marvel-agent
 
 echo "get elasticsearch-river-couchdb"
 cd /tmp

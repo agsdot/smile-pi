@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-if ( ! grep -q 'archlinuxfr' /etc/pacman.conf )
-then
+# On a rpi3, loggin in as root
+# curl -O https://raw.githubusercontent.com/agsdot/vagrant-archbox/master/bootstrap.sh
+# chmod +x bootstrap.sh
+# ./bootstrap.sh
 
-echo "add server for yaourt"
-echo "
-[archlinuxfr]
-SigLevel = Never
-Server = http://repo.archlinux.fr/\$arch
-" >> /etc/pacman.conf
-
-fi
+# After that is done, login as alarm user and clone the repo and run the remaining scripts as alarm (non root)
+# cd ; git clone https://github.com/agsdot/vagrant-archbox.git; cd vagrant-archbox
+# chmod +x the scripts, then run scripts in order of 1) basic_package.sh 2) smile_preparation.sh 3) smile_setup.sh
 
 pacman -Syu
 pacman -S --noconfirm --needed --force vim git wget base-devel

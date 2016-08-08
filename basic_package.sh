@@ -4,11 +4,6 @@
 
 echo "basic package"
 
-echo "$PWD"
-echo "$HOME"
-HOME="/home/vagrant"
-echo "$HOME"
-
 if [ ! -d "/tmp/sexy-bash-prompt" ]; then
   echo "making bash prompts better"
   (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc

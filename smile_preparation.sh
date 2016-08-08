@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
 echo "install yaourt"
-sudo pacman -S --noconfirm --needed yaourt
+sudo pacman -S --noconfirm --needed yajl
+
+cd /tmp
+git clone https://aur.archlinux.org/package-query.git
+cd package-query
+echo y | makepkg -si
+cd ..
+git clone https://aur.archlinux.org/yaourt.git
+cd yaourt
+echo y | makepkg -si
+cd ..
+
 echo "install create_ap"
 yaourt -S --noconfirm create_ap
 
