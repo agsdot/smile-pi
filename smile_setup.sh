@@ -95,9 +95,14 @@ echo "systemctl for nginx"
 sudo systemctl enable nginx
 sudo systemctl start nginx
 
-cd ~/vagrant-archbox/system.d.service.files/
+cd ~/vagrant-archbox/setup_files/
 sudo cp create_ap.service /usr/lib/systemd/system/create_ap.service
 sudo cp redis.service /usr/lib/systemd/system/redis.service
+
+cp /vagrant/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+cd ~/smile_v2/backend/assets/couchdb/
+chmod +x couch_setup.sh
+./couch_setup.sh
 
 echo "systemctl for redis"
 sudo systemctl enable redis
@@ -110,3 +115,5 @@ sudo systemctl start smile_backend
 echo "systemctl for create_ap"
 sudo systemctl enable create_ap
 sudo systemctl start create_ap
+
+sudo chmod +755 $HOME
