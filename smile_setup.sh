@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 sudo pacman -S --noconfirm --needed unzip
-
+sudo pacman -S --noconfirm --needed emacs-nox
 sudo pacman -S --noconfirm --needed tmux
+
 sudo sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen
 sudo locale-gen
 
@@ -35,7 +36,8 @@ sudo chown elasticsearch /var/lib/elasticsearch
 sudo chgrp elasticsearch /var/lib/elasticsearch
 sudo cp ~/smile_v2/vagrant/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 
-#sudo unzip  analysis-icu*.zip -d analysis-icu/
+#sudo unzip analysis-icu*.zip -d analysis-icu/
+# cruft from doing a manual elasticsearch-plugin install, left there for documentation purposes
 
 cd /usr/share/elasticsearch/plugins/
 sudo rm -rf *
@@ -72,15 +74,29 @@ sudo rm -rf *
 echo "install ~/smile_v2/backend node dependencies"
 cd ~/smile_v2/backend/
 
-#version of hiredis can be changed in package.json
+# version of hiredis can be changed in package.json
 sudo sed -i 's@0.1.17@0.5.0@' package.json
 
 npm install
 
 echo "npm packages put in"
 
-####items below need to be tested more####
-####test with node main.js in the backend folder with redis-server running###
+cd ~/vagrant-archbox/setup_files/
+sudo cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service
+sudo cp redis.service /usr/lib/systemd/system/redis.service
+echo "redis.service accounted for"
+
+cd ~/vagrant-archbox/setup_files/
+sudo cp -rf etc_hosts /etc/hosts
+echo "hosts file overwritten"
+
+cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+cd ~/smile_v2/backend/assets/couchdb/
+chmod +x couch_setup.sh
+./couch_setup.sh
+
+# To address nginx permissions issue, $HOME/smile_v2/frontend/src/ accessibility
+sudo chmod +755 $HOME
 
 echo "systemctl for couch"
 sudo systemctl enable couchdb
@@ -90,19 +106,9 @@ echo "systemctl for elasticsearch"
 sudo systemctl enable elasticsearch
 sudo systemctl start elasticsearch
 
-#why permissions issues?
 echo "systemctl for nginx"
 sudo systemctl enable nginx
 sudo systemctl start nginx
-
-cd ~/vagrant-archbox/setup_files/
-sudo cp create_ap.service /usr/lib/systemd/system/create_ap.service
-sudo cp redis.service /usr/lib/systemd/system/redis.service
-
-cp /vagrant/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
-cd ~/smile_v2/backend/assets/couchdb/
-chmod +x couch_setup.sh
-./couch_setup.sh
 
 echo "systemctl for redis"
 sudo systemctl enable redis
@@ -115,5 +121,3 @@ sudo systemctl start smile_backend
 echo "systemctl for create_ap"
 sudo systemctl enable create_ap
 sudo systemctl start create_ap
-
-sudo chmod +755 $HOME
