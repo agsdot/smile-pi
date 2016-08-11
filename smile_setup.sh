@@ -90,17 +90,17 @@ cd ~/vagrant-archbox/setup_files/
 sudo cp -rf etc_hosts /etc/hosts
 echo "hosts file overwritten"
 
-cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
-cd ~/smile_v2/backend/assets/couchdb/
-chmod +x couch_setup.sh
-./couch_setup.sh
-
 # To address nginx permissions issue, $HOME/smile_v2/frontend/src/ accessibility
 sudo chmod +755 $HOME
 
 echo "systemctl for couch"
 sudo systemctl enable couchdb
 sudo systemctl start couchdb
+
+cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+cd ~/smile_v2/backend/assets/couchdb/
+chmod +x couch_setup.sh
+./couch_setup.sh
 
 echo "systemctl for elasticsearch"
 sudo systemctl enable elasticsearch

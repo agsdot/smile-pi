@@ -4,7 +4,8 @@
 #curl -v --silent https://google.com/ 2>&1 | grep expire
 
 echo "couch check"
-if ( curl -X GET http://127.0.0.1:5984/smile 2>&1  | grep not_found ) then
+#if ( curl -X GET http://127.0.0.1:5984/smile 2>&1  | grep not_found ) then
+  curl -X DELETE http://127.0.0.1:5984/smile 2>&1 > /dev/null
   echo "couch population"
   curl -X PUT http://127.0.0.1:5984/smile 2>&1 > /dev/null
 
@@ -17,5 +18,5 @@ if ( curl -X GET http://127.0.0.1:5984/smile 2>&1  | grep not_found ) then
   curl -X PUT http://127.0.0.1:5984/smile/_design/session --data-binary @./_design.session.json 2>&1 > /dev/null
   curl -X PUT http://127.0.0.1:5984/smile/_design/user --data-binary @./_design.user.json 2>&1 > /dev/null
   curl -X PUT http://127.0.0.1:5984/smile/_design/message --data-binary @./_design.message.json 2>&1 > /dev/null
-fi
+#fi
 echo "done with couch script"
