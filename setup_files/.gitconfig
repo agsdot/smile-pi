@@ -1,0 +1,11 @@
+[alias]
+  co = checkout
+  br = branch
+  st = status -bs
+  g = log --graph --pretty=custom
+  l = log --pretty=custom
+[pretty]
+  custom = %C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim

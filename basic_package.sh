@@ -8,9 +8,6 @@ if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
   cd ~
   git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt --depth=1
 
-  echo "alias vi=vim" >> ~/.bash_aliases
-  echo "alias ls='ls -aF --color'" >> ~/.bash_aliases
-
   echo "source ~/.bash-git-prompt/gitprompt.sh" >> ~/.bashrc
   echo "GIT_PROMPT_ONLY_IN_REPO=1" >> ~/.bashrc
   source ~/.bashrc
@@ -42,31 +39,19 @@ sudo pacman -S --noconfirm --needed python2-pip
 sudo pacman -S --noconfirm --needed ruby
 echo "done with rubies and javascriptrs"
 
-
 if [ ! -f ~/.npmrc ]; then
+  echo "setup ~/.npmrc"
   touch ~/.npmrc
   echo "prefix=${HOME}/.node_modules" >> ~/.npmrc
 fi
 
-rm -rf ~/.bash_aliases
+if [ ! -f ~/.gitconfig ]; then
+  echo "setup ~/.gitconfig"
+  cp ~/vagrant-archbox/setup_files/.gitconfig ~/.gitconfig
+fi
+
 if [ ! -f ~/.bash_aliases ]; then
-  echo "setup aliases"
-  touch ~/.bash_aliases
-  echo "alias vi=vim" >> ~/.bash_aliases
-  echo "alias ls='ls -aF --color'" >> ~/.bash_aliases
-  echo "export EDITOR=vim" >> ~/.bash_aliases
-  echo "export PYTHON=python2" >> ~/.bash_aliases
-  echo "alias python=/usr/bin/python2" >> ~/.bash_aliases
-  echo "alias pip=/usr/bin/pip2" >> ~/.bash_aliases
-
-  echo "export NODE_PATH=~/.node_modules/lib/node_modules:$NODE_PATH" >> ~/.bash_aliases
-  echo "unset MANPATH" >> ~/.bash_aliases
-  echo "export MANPATH=\"~/.node_modules/share/man:$(manpath)\"" >> ~/.bash_aliases
-
-  echo "export NPMPATH=$HOME/.node_modules/bin" >> ~/.bash_aliases
-  echo "export GEMPATH=$(ruby -rubygems -e 'puts Gem.user_dir')/bin" >> ~/.bash_aliases
-  source ~/.bash_aliases
-  echo "export PATH=$PATH:$NPMPATH:$GEMPATH" >> ~/.bash_aliases
+  echo "setup ~/.bash_aliases"
+  cp ~/vagrant-archbox/setup_files/.bash_aliases ~/.bash_aliases
 fi
 source ~/.bash_aliases
-
