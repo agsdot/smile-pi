@@ -1,19 +1,30 @@
 #!/usr/bin/env bash
 
-#echo $(basename $(readlink -nf $0))
-
 echo "basic package"
 
-if [ ! -d "/tmp/sexy-bash-prompt" ]; then
-  echo "making bash prompts better"
-  (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
+if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
+  echo "install bash-git-prompt"
+
+  cd ~
+  git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt --depth=1
+
+  echo "alias vi=vim" >> ~/.bash_aliases
+  echo "alias ls='ls -aF --color'" >> ~/.bash_aliases
+
+  echo "source ~/.bash-git-prompt/gitprompt.sh" >> ~/.bashrc
+  echo "GIT_PROMPT_ONLY_IN_REPO=1" >> ~/.bashrc
+  source ~/.bashrc
+
+  echo "cleanup bash-git-prompt install"
+  rm -rf ~/bash-git-prompt
 fi
 
-if [ ! -d "/tmp/quick-vim" ]; then
+if ( ! grep -q 'plugin' ~/.vimrc ); then
   echo "improve vim"
   git clone git://github.com/brianleroux/quick-vim.git /tmp/quick-vim
   cd /tmp/quick-vim
   ./quick-vim install
+  rm -rf /tmp/quick-vim
 fi
 
 echo "checking for alias reference in the ~/.bashrc"
