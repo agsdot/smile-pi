@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-sudo pacman -S --noconfirm --needed unzip
-sudo pacman -S --noconfirm --needed emacs-nox
-sudo pacman -S --noconfirm --needed tmux
-
 sudo sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen
 sudo locale-gen
 
@@ -118,6 +114,9 @@ echo "systemctl for smile_backend"
 sudo systemctl enable smile_backend
 sudo systemctl start smile_backend
 
-echo "systemctl for create_ap"
-sudo systemctl enable create_ap
-sudo systemctl start create_ap
+# If not vagrant, i.e. booting up a rpi3
+if [ ! -d /vagrant ]; then
+  echo "systemctl for create_ap"
+  sudo systemctl enable create_ap
+  sudo systemctl start create_ap
+fi

@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "basic_package.sh", privileged: false
   config.vm.provision "shell", path: "smile_preparation.sh", privileged: false
   config.vm.provision "shell", path: "smile_setup.sh", privileged: false
+  config.vm.provision "shell", path: "kiwix_wikipedia_setup.sh", privileged: false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -29,6 +30,8 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 8001, host: 8001
+  config.vm.network "forwarded_port", guest: 8008, host: 8008
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.

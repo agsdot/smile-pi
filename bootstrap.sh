@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pacman -Syu
-pacman -S --noconfirm --needed --force vim git wget base-devel
+pacman -S --noconfirm --needed --force base-devel git wget unzip vim emacs-nox tmux
 
 sed -i '/wheel ALL/s/^#//g' /etc/sudoers
 

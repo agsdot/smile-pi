@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "install yaourt"
+echo "yaourt install dependencies"
 sudo pacman -S --noconfirm --needed yajl
 
 cd /tmp
@@ -13,8 +13,11 @@ cd yaourt
 echo y | makepkg -si
 cd ..
 
-echo "install create_ap"
-yaourt -S --noconfirm create_ap
+# If not vagrant, i.e. booting up a rpi3
+if [ ! -d /vagrant ]; then
+  echo "install create_ap"
+  yaourt -S --noconfirm create_ap
+fi
 
 echo "install compass"
 gem install compass

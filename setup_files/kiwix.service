@@ -1,0 +1,13 @@
+[Unit]
+Description=kiwix_server_for_wikipedia
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/share/kiwix/kiwix-serve --port=8001 --library /usr/share/kiwix/data/library/wikipedia_en_for_schools_opt_2013.zim.xml
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
