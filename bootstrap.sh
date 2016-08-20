@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-pacman -Syu
+pacman -Syu --noconfirm --needed
 pacman -S --noconfirm --needed --force base-devel git wget unzip vim emacs-nox tmux
+
+## for tmux
+sudo sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen
+sudo locale-gen
+##
 
 sed -i '/wheel ALL/s/^#//g' /etc/sudoers
 

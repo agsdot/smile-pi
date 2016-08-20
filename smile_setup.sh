@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-sudo sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen
-sudo locale-gen
-
 echo "clone the plug branch of the smile_v2 repo"
 
 if [ ! -d "~/smile_v2" ]; then
@@ -93,11 +90,6 @@ echo "systemctl for couch"
 sudo systemctl enable couchdb
 sudo systemctl start couchdb
 
-cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
-cd ~/smile_v2/backend/assets/couchdb/
-chmod +x couch_setup.sh
-./couch_setup.sh
-
 echo "systemctl for elasticsearch"
 sudo systemctl enable elasticsearch
 sudo systemctl start elasticsearch
@@ -113,6 +105,11 @@ sudo systemctl start redis
 echo "systemctl for smile_backend"
 sudo systemctl enable smile_backend
 sudo systemctl start smile_backend
+
+cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+cd ~/smile_v2/backend/assets/couchdb/
+chmod +x couch_setup.sh
+source couch_setup.sh
 
 # If not vagrant, i.e. booting up a rpi3
 if [ ! -d /vagrant ]; then
