@@ -3,25 +3,40 @@
 mkdir -p ~/kiwix
 cd ~/kiwix
 
-if [ -f /vagrant/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip ]; then
-  # avoid downloading the kiwix wikipedia zip file each and every time if your running this in a vm
-  echo "copying file from vagrant directory"
-  \cp -r /vagrant/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip
-fi
+# If not vagrant, i.e. booting up a rpi3
+if [ ! -d /vagrant ]; then
 
-if [ ! -f ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip ]; then
-  #http://stackoverflow.com/questions/31218477/how-can-only-display-progess-bar-with-wget-in-vagrant-provisioning
   echo "downloading kiwix and wikipedia zipped up"
   #http://download.kiwix.org/portable/wikipedia/
   wget http://download.kiwix.org/portable/wikipedia/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip --progress=bar:force
   echo "done with kiwix and wikipedia zip download"
-  unzip -d kiwix-0.9+wikipedia_en_for-schools_2013-01 ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip
-fi
+  #https://flyingtomoon.com/2012/04/04/unzip-a-specific-folder-of-a-compressed-file-exclude-some-folders-from-extraction/
+  unzip -d kiwix-0.9+wikipedia_en_for-schools_2013-01 ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip data/*
 
-# Can clean up logic later, for this block as well as two preceding ones.
-# Just primarily to save time on booting up a vm.
-if [ ! -d "~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01" ]; then
-  unzip -d kiwix-0.9+wikipedia_en_for-schools_2013-01 ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip
+else
+
+  if [ ! -d "~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01" ]; then
+
+    if [ -f /vagrant/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip ]; then
+      # avoid downloading the kiwix wikipedia zip file each and every time if your running this in a vm
+      echo "copying file from vagrant directory"
+      \cp -r /vagrant/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip
+    fi
+
+    if [ ! -f ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip ]; then
+      #http://stackoverflow.com/questions/31218477/how-can-only-display-progess-bar-with-wget-in-vagrant-provisioning
+      echo "downloading kiwix and wikipedia zipped up"
+      #http://download.kiwix.org/portable/wikipedia/
+      wget http://download.kiwix.org/portable/wikipedia/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip --progress=bar:force
+      echo "done with kiwix and wikipedia zip download"
+      \cp -r ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip /vagrant/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip
+    fi
+
+    #https://flyingtomoon.com/2012/04/04/unzip-a-specific-folder-of-a-compressed-file-exclude-some-folders-from-extraction/
+    unzip -d kiwix-0.9+wikipedia_en_for-schools_2013-01 ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01.zip data/*
+
+  fi
+
 fi
 
 if [ ! -f ~/kiwix/kiwix-serve ]; then
