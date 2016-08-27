@@ -12,7 +12,7 @@ On a rpi3, login in as root (the image should have a minimal amount of packages 
   - ./bootstrap.sh
 
 After that is done, login as alarm (the default non root user) and change directory into /home/alarm/vagrant-archbox
-chmod +x the scripts, then run scripts in order of 1) basic_package.sh 2) smile_preparation.sh 3) smile_setup.sh
+chmod +x the scripts, then run scripts in order of 1) basic_package.sh 2) smile_preparation.sh 3) smile_setup.sh (or alternatively run the in development rpi3_install.sh script)
 
 Enjoy
 
