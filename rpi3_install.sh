@@ -7,12 +7,14 @@
 options=("basic_package.sh - install common utilities and programs needed across the board, e.g. node, python, etc"
          "smile_preparation.sh - install packages needed by Smile (redis, hiredis, couchdb)"
          "smile_setup.sh - install and implement Smile, including scripts to autostart services"
-         "kiwix_wikipedia_setup.sh - install wikipedia")
+         "kiwix_wikipedia_setup.sh - install wikipedia"
+         "smile_plug_portal.sh - setup the smile plug portal page, configure nginx and links properly")
 
 bashscripts=("basic_package.sh"
              "smile_preparation.sh"
              "smile_setup.sh"
-             "kiwix_wikipedia_setup.sh")
+             "kiwix_wikipedia_setup.sh"
+             "smile_plug_portal.sh")
 
 menu() {
   clear

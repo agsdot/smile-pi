@@ -1,0 +1,169 @@
+
+#user html;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        off;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    server {
+        listen       80;
+        server_name  localhost;
+
+        #charset koi8-r;
+
+        #access_log  logs/host.access.log  main;
+
+        location /wikipedia {
+            proxy_pass http://localhost:8001;
+        }
+
+        location /smile {
+            alias  /home/alarm/smile_v2/frontend/src;
+            index  index.html index.htm;
+        }
+
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+
+        #location / {
+        #    try_files $uri $uri/ /index.html;
+        #}
+        #location / {
+        #    #root   /home/vagrant/smile_v2/frontend/src;
+  #    root   /usr/share/nginx/html;
+        #    index  index.html index.htm;
+        #    autoindex on;
+        #}
+
+
+        location /smileService {
+            rewrite     /smileService/(.*)      /$1  break;
+            rewrite     /smileService           /    break;
+            proxy_pass http://localhost:1337;
+            proxy_redirect          off;
+            proxy_set_header        Host            $host;
+            proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header    X-Real-IP       $remote_addr;
+            client_max_body_size    512m;
+            client_body_buffer_size 1024k;
+            proxy_connect_timeout   15;
+            proxy_send_timeout      15;
+            proxy_read_timeout      60; #Effects web sockets
+            proxy_buffers           32 4k;
+            proxy_set_header    X-NginX-Proxy   true;
+            proxy_http_version  1.1;
+            proxy_set_header    Upgrade $http_upgrade;
+            proxy_set_header    Connection      "upgrade";
+        } 
+        location /couchdb {
+            rewrite     /couchdb/(.*)      /$1  break;
+            rewrite     /couchdb           /    break;
+            proxy_pass http://127.0.0.1:5984;
+            proxy_redirect          off;
+            proxy_set_header        Host            $host;
+            proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header    X-Real-IP       $remote_addr;
+            client_max_body_size    512m;
+            client_body_buffer_size 1024k;
+            proxy_connect_timeout   15;
+            proxy_send_timeout      15;
+            proxy_read_timeout      15;
+            proxy_buffers           32 4k;
+        } 
+
+        #error_page  404              /404.html;
+
+        # redirect server error pages to the static page /50x.html
+        #
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
+
+        # proxy the PHP scripts to Apache listening on 127.0.0.1:80
+        #
+        #location ~ \.php$ {
+        #    proxy_pass   http://127.0.0.1;
+        #}
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        #location ~ \.php$ {
+        #    root           html;
+        #    fastcgi_pass   127.0.0.1:9000;
+        #    fastcgi_index  index.php;
+        #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+        #    include        fastcgi_params;
+        #}
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #    deny  all;
+        #}
+    }
+
+
+    # another virtual host using mix of IP-, name-, and port-based configuration
+    #
+    #server {
+    #    listen       8000;
+    #    listen       somename:8080;
+    #    server_name  somename  alias  another.alias;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+
+    # HTTPS server
+    #
+    #server {
+    #    listen       443;
+    #    server_name  localhost;
+
+    #    ssl                  on;
+    #    ssl_certificate      cert.pem;
+    #    ssl_certificate_key  cert.key;
+
+    #    ssl_session_timeout  5m;
+
+    #    ssl_protocols  SSLv2 SSLv3 TLSv1;
+    #    ssl_ciphers  HIGH:!aNULL:!MD5;
+    #    ssl_prefer_server_ciphers   on;
+
+    #    location / {
+    #        root   html;
+    #        index  index.html index.htm;
+    #    }
+    #}
+
+}
