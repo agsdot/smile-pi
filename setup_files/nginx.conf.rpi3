@@ -79,10 +79,10 @@ http {
             proxy_http_version  1.1;
             proxy_set_header    Upgrade $http_upgrade;
             proxy_set_header    Connection      "upgrade";
-        } 
+        }
         location /couchdb {
-            rewrite     /couchdb/(.*)      /$1  break;
-            rewrite     /couchdb           /    break;
+            rewrite     /couchdb/(.*)      /smile/$1  break;
+            rewrite     /couchdb           /smile    break;
             proxy_pass http://127.0.0.1:5984;
             proxy_redirect          off;
             proxy_set_header        Host            $host;
@@ -94,7 +94,7 @@ http {
             proxy_send_timeout      15;
             proxy_read_timeout      15;
             proxy_buffers           32 4k;
-        } 
+        }
 
         #error_page  404              /404.html;
 
