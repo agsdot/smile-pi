@@ -32,8 +32,30 @@ then
 fi
 
 echo "installing rubies and javascripts"
-sudo pacman -S --noconfirm --needed nodejs
-sudo pacman -S --noconfirm --needed npm
+# sudo pacman -S --noconfirm --needed nodejs
+# sudo pacman -S --noconfirm --needed npm
+
+### manual install of nodejs 0.10.25 ###
+### until fix found, the new version node 6.2 affects image upload and socket io ###
+
+cd ~ && mkdir node-v0.10.25
+cd node-v0.10.25
+
+
+# If not vagrant, i.e. booting up a rpi3
+if [ ! -d /vagrant ]; then
+  wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz --progress=bar:force
+  cd ~ && mkdir .node_modules
+  cd .node_modules
+  tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz
+else
+  wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-x64.tar.gz --progress=bar:force
+  cd ~ && mkdir .node_modules
+  cd .node_modules
+  tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-x64.tar.gz
+fi
+
+### manual install of nodejs 0.10.25 ###
 sudo pacman -S --noconfirm --needed python2
 sudo pacman -S --noconfirm --needed python2-pip
 sudo pacman -S --noconfirm --needed ruby
@@ -43,6 +65,7 @@ if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
   touch ~/.npmrc
   echo "prefix=${HOME}/.node_modules" >> ~/.npmrc
+  echo "python=/usr/bin/python2" >> ~/.npmrc
 fi
 
 if [ ! -f ~/.gitconfig ]; then

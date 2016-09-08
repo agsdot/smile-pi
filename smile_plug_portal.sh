@@ -6,7 +6,8 @@ echo "smile plug portal page script"
 echo "install build tools one will need"
 
 echo "install jake globally from npm"
-npm install -g jake
+
+PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g jake
 
 echo "make backups"
 echo "in /etc/nginx/"
@@ -41,7 +42,8 @@ sed -i 's@:8008/@/khan/@' home.js
 cd ~/smile-plug-portal-web/
 echo "build smile plug portal"
 
-jake build
+#jake build
+PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/jake build
 
 cd ~/smile-plug-portal-web/target/
 

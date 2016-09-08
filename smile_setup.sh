@@ -16,10 +16,13 @@ sudo cp ~/smile_v2/vagrant/proxy.conf /etc/nginx/proxy.conf
 #https://stackoverflow.com/questions/584894/sed-scripting-environment-variable-substitution
 #https://askubuntu.com/questions/20414/find-and-replace-text-within-a-file-using-commands
 sudo sed -i 's@/vagrant@'"$HOME"/smile_v2/frontend/src'@' /etc/nginx/nginx.conf
+sudo sed -i 's@/couchdb/(.*)      /$1  break;@/couchdb/(.*)      /smile/$1  break;@' /etc/nginx/nginx.conf
+sudo sed -i 's@/couchdb           /    break;@/couchdb           /smile    break;@' /etc/nginx/nginx.conf
 
 echo "setup smile_backend systemd service"
 cp ~/smile_v2/vagrant/smile_backend.service /tmp/smile_backend.service
 sed -i 's@/vagrant@'"$HOME"/smile_v2'@' /tmp/smile_backend.service
+sed -i 's@/usr/bin/node@'"$HOME"/.node_modules/bin/node'@' /tmp/smile_backend.service
 sudo cp /tmp/smile_backend.service /usr/lib/systemd/system/smile_backend.service
 
 echo "configure elasticsearch"
@@ -70,7 +73,7 @@ cd ~/smile_v2/backend/
 # version of hiredis can be changed in package.json
 sudo sed -i 's@0.1.17@0.5.0@' package.json
 
-npm install
+PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install
 
 echo "npm packages put in"
 
@@ -85,6 +88,18 @@ echo "hosts file overwritten"
 
 # To address nginx permissions issue, $HOME/smile_v2/frontend/src/ accessibility
 sudo chmod +755 $HOME
+
+### troubleshooting code, may remove later , to get smile_backend service working ####
+sudo chmod +755 $HOME/smile_v2
+sudo chmod +755 $HOME/smile_v2/backend
+sudo chmod +755 $HOME/smile_v2/backend/main.js
+
+cd ~/smile_v2/backend
+
+PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g underscore
+PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm update
+
+###
 
 echo "systemctl for couch"
 sudo systemctl enable couchdb
@@ -106,14 +121,15 @@ echo "systemctl for smile_backend"
 sudo systemctl enable smile_backend
 sudo systemctl start smile_backend
 
-cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
-cd ~/smile_v2/backend/assets/couchdb/
-chmod +x couch_setup.sh
-source couch_setup.sh
-
 # If not vagrant, i.e. booting up a rpi3
-if [ ! -d /vagrant ]; then
+#if [ ! -d /vagrant ]; then
   echo "systemctl for create_ap"
   sudo systemctl enable create_ap
   sudo systemctl start create_ap
-fi
+#fi
+
+cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+cd ~/smile_v2/backend/assets/couchdb/
+chmod +x couch_setup.sh
+sh couch_setup.sh
+

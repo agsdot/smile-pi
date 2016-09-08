@@ -10,14 +10,14 @@ alias vi=vim
 alias python=/usr/bin/python2
 alias pip=/usr/bin/pip2
 
-export NODE_PATH=~/.node_modules/lib/node_modules:$NODE_PATH
-unset MANPATH
-export MANPATH="~/.node_modules/share/man:$(manpath)"
+#export NODE_PATH=~/.node_modules/lib/node_modules:$NODE_PATH
+#unset MANPATH
+#export MANPATH="~/.node_modules/share/man:$(manpath)"
 
-NPMPATH=$HOME/.node_modules/bin
+#NPMPATH=$HOME/.node_modules/bin
 GEMPATH=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
+NODE_PATH=~/.node_modules/bin
 
 export EDITOR=vim
 export PYTHON=python2
-export PATH=$PATH:$NPMPATH:$GEMPATH
-
+export PATH=$PATH:$GEMPATH:$NODE_PATH
