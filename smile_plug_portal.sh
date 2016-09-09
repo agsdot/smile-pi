@@ -36,8 +36,8 @@ git clone https://bitbucket.org/gseit/smile-plug-portal-web
 cd ~/smile-plug-portal-web/src/views/
 
 sed -i 's@/smile/frontend/src/@/smile/@' home.js
-sed -i 's@:8001/@/wikipedia/@' home.js
-sed -i 's@:8008/@/khan/@' home.js
+#sed -i 's@:8001/@/wikipedia/@' home.js
+#sed -i 's@:8008/@/khan/@' home.js
 
 cd ~/smile-plug-portal-web/
 echo "build smile plug portal"

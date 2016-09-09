@@ -38,9 +38,9 @@ http {
 
         #access_log  logs/host.access.log  main;
 
-        location /wikipedia {
-            proxy_pass http://localhost:8001;
-        }
+        #location /wikipedia {
+        #    proxy_pass http://localhost:8001;
+        #}
 
         location /smile {
             alias  /home/alarm/smile_v2/frontend/src;
