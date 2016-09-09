@@ -20,6 +20,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "smile_preparation.sh", privileged: false
   config.vm.provision "shell", path: "smile_setup.sh", privileged: false
   config.vm.provision "shell", path: "kiwix_wikipedia_setup.sh", privileged: false
+  config.vm.provision "shell", path: "kalite_setup.sh", privileged: false
+  config.vm.provision "shell", path: "smile_plug_portal.sh", privileged: false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

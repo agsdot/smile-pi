@@ -8,12 +8,14 @@ options=("basic_package.sh - install common utilities and programs needed across
          "smile_preparation.sh - install packages needed by Smile (redis, hiredis, couchdb)"
          "smile_setup.sh - install and implement Smile, including scripts to autostart services"
          "kiwix_wikipedia_setup.sh - install wikipedia"
+         "kalite_setup.sh - install khan academy lite"
          "smile_plug_portal.sh - setup the smile plug portal page, configure nginx and links properly")
 
 bashscripts=("basic_package.sh"
              "smile_preparation.sh"
              "smile_setup.sh"
              "kiwix_wikipedia_setup.sh"
+             "kalite_setup.sh"
              "smile_plug_portal.sh")
 
 menu() {

@@ -1,0 +1,14 @@
+[Unit]
+Description=Start KA Lite Web Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kalite start
+ExecStop=/usr/bin/kalite stop
+RemainAfterExit=yes
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
