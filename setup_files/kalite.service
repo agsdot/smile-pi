@@ -3,6 +3,9 @@ Description=Start KA Lite Web Service
 After=network.target
 
 [Service]
+User=alarm
+Group=alarm
+
 Type=simple
 ExecStart=/usr/bin/kalite start
 ExecStop=/usr/bin/kalite stop

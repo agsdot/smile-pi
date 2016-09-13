@@ -35,13 +35,16 @@ mv ~/.kalite/content/ ~/.kalite/content_backup/
 mv ~/kalite_files/ka-lite-0.16-resized-videos ~/.kalite/content/
 cp -r ~/.kalite/content_backup/assessement ~/.kalite/content/
 
-echo "kalite manage setup, run it again for safekeeping, new content was added to the ~/.kalite directory"
-# https://github.com/learningequality/ka-lite/issues/4991
-/usr/bin/kalite manage setup --username=kalitedbadmin --password=kalitedbadmin123 --noinput
-
 echo "/usr/bin/kalite manage retrievecontentpack local en ~/kalite_files/en.zip"
 echo "this may take awhile, as in 30 minutes plus or so..."
 /usr/bin/kalite manage retrievecontentpack local en ~/kalite_files/en.zip
+
+echo "kalite manage setup, run it again for safekeeping, new content was added to the ~/.kalite directory"
+rm -rf ~/.kalite/database/data.sqlite
+# make sure videos in content directory are loaded
+echo "DO_NOT_RELOAD_CONTENT_CACHE_AT_STARTUP = False" >> ~/.kalite/settings.py
+# https://github.com/learningequality/ka-lite/issues/4991
+/usr/bin/kalite manage setup --username=kalitedbadmin --password=kalitedbadmin123 --noinput
 
 cd ~
 rm -rf ~/vagrant-archbox
