@@ -78,3 +78,76 @@ if [ ! -f ~/.bash_aliases ]; then
   cp ~/vagrant-archbox/setup_files/.bash_aliases ~/.bash_aliases
 fi
 source ~/.bash_aliases
+
+# for npm stuffs #
+# source ~/.bash_aliases
+# http://stackoverflow.com/questions/30281057/node-forever-usr-bin-env-node-no-such-file-or-directory
+# https://github.com/nodejs/node-v0.x-archive/issues/3911
+#echo "softlink node and npm to /usr/bin location"
+#sudo ln -s "$(which node)" /usr/bin/node
+#sudo ln -s "$(which npm)" /usr/bin/npm
+echo "make npm up to date"
+#$HOME/.node_modules/bin/npm config set python /usr/bin/python2
+#https://github.com/nodejs/node-v0.x-archive/issues/3911
+PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g npm
+####
+
+echo "yaourt install dependencies"
+sudo pacman -S --noconfirm --needed yajl
+
+cd /tmp
+git clone https://aur.archlinux.org/package-query.git
+cd package-query
+echo y | makepkg -si
+cd ..
+git clone https://aur.archlinux.org/yaourt.git
+cd yaourt
+echo y | makepkg -si
+cd ..
+
+# If not vagrant, i.e. booting up a rpi3
+if [ ! -d /vagrant ]; then
+  echo "install create_ap"
+  yaourt -S --noconfirm create_ap
+fi
+
+echo "install compass"
+gem install compass --no-ri --no-rdoc
+
+#https://github.com/nodejs/node-gyp/issues/454
+echo "install node-gyp"
+$HOME/.node_modules/bin/npm install -g node-gyp
+
+echo "install nginx"
+sudo pacman -S --noconfirm --needed nginx
+
+echo "setup create_ap"
+cd ~/vagrant-archbox/setup_files/
+sudo cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service
+
+# If not vagrant, i.e. booting up a rpi3
+#if [ ! -d /vagrant ]; then
+  echo "systemctl for create_ap"
+  sudo systemctl enable create_ap
+  sudo systemctl start create_ap
+#fi
+
+echo "setup nginx conf files"
+sudo cp ~/smile_v2/vagrant/nginx.conf /etc/nginx/nginx.conf
+sudo cp ~/smile_v2/vagrant/proxy.conf /etc/nginx/proxy.conf
+#https://stackoverflow.com/questions/584894/sed-scripting-environment-variable-substitution
+#https://askubuntu.com/questions/20414/find-and-replace-text-within-a-file-using-commands
+sudo sed -i 's@/vagrant@'"$HOME"/smile_v2/frontend/src'@' /etc/nginx/nginx.conf
+sudo sed -i 's@/couchdb/(.*)      /$1  break;@/couchdb/(.*)      /smile/$1  break;@' /etc/nginx/nginx.conf
+sudo sed -i 's@/couchdb           /    break;@/couchdb           /smile    break;@' /etc/nginx/nginx.conf
+
+cd ~/vagrant-archbox/setup_files/
+sudo cp -rf etc_hosts /etc/hosts
+echo "hosts file overwritten"
+
+# To address nginx permissions issue, $HOME/smile_v2/frontend/src/ accessibility
+sudo chmod +755 $HOME
+
+echo "systemctl for nginx"
+sudo systemctl enable nginx
+sudo systemctl start nginx

@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+echo "install redis and hiredis"
+sudo pacman -S --noconfirm --needed redis
+sudo pacman -S --noconfirm --needed hiredis
+
+$HOME/.node_modules/bin/npm install -g hiredis
+$HOME/.node_modules/bin/npm install -g redis
+
+echo "install couchdb"
+sudo pacman -S --noconfirm --needed couchdb
+
+echo "install elasticsearch"
+sudo pacman -S --noconfirm --needed elasticsearch
 echo "clone the plug branch of the smile_v2 repo"
 
 if [ ! -d "~/smile_v2" ]; then
@@ -9,15 +21,6 @@ if [ ! -d "~/smile_v2" ]; then
   git checkout -b plug origin/plug
   cd
 fi
-
-echo "setup nginx conf files"
-sudo cp ~/smile_v2/vagrant/nginx.conf /etc/nginx/nginx.conf
-sudo cp ~/smile_v2/vagrant/proxy.conf /etc/nginx/proxy.conf
-#https://stackoverflow.com/questions/584894/sed-scripting-environment-variable-substitution
-#https://askubuntu.com/questions/20414/find-and-replace-text-within-a-file-using-commands
-sudo sed -i 's@/vagrant@'"$HOME"/smile_v2/frontend/src'@' /etc/nginx/nginx.conf
-sudo sed -i 's@/couchdb/(.*)      /$1  break;@/couchdb/(.*)      /smile/$1  break;@' /etc/nginx/nginx.conf
-sudo sed -i 's@/couchdb           /    break;@/couchdb           /smile    break;@' /etc/nginx/nginx.conf
 
 echo "setup smile_backend systemd service"
 cp ~/smile_v2/vagrant/smile_backend.service /tmp/smile_backend.service
@@ -78,16 +81,8 @@ PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install
 echo "npm packages put in"
 
 cd ~/vagrant-archbox/setup_files/
-sudo cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service
 sudo cp redis.service /usr/lib/systemd/system/redis.service
 echo "redis.service accounted for"
-
-cd ~/vagrant-archbox/setup_files/
-sudo cp -rf etc_hosts /etc/hosts
-echo "hosts file overwritten"
-
-# To address nginx permissions issue, $HOME/smile_v2/frontend/src/ accessibility
-sudo chmod +755 $HOME
 
 ### troubleshooting code, may remove later , to get smile_backend service working ####
 sudo chmod +755 $HOME/smile_v2
@@ -109,10 +104,6 @@ echo "systemctl for elasticsearch"
 sudo systemctl enable elasticsearch
 sudo systemctl start elasticsearch
 
-echo "systemctl for nginx"
-sudo systemctl enable nginx
-sudo systemctl start nginx
-
 echo "systemctl for redis"
 sudo systemctl enable redis
 sudo systemctl start redis
@@ -121,15 +112,7 @@ echo "systemctl for smile_backend"
 sudo systemctl enable smile_backend
 sudo systemctl start smile_backend
 
-# If not vagrant, i.e. booting up a rpi3
-#if [ ! -d /vagrant ]; then
-  echo "systemctl for create_ap"
-  sudo systemctl enable create_ap
-  sudo systemctl start create_ap
-#fi
-
 cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
 cd ~/smile_v2/backend/assets/couchdb/
 chmod +x couch_setup.sh
 sh couch_setup.sh
-
