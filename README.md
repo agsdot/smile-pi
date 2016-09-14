@@ -9,10 +9,9 @@ Place the microsd in the raspberry pi and boot it up.
 On a rpi3, login in as root (the image should have a minimal amount of packages on it; no git, no wget, no sudo, etc (no nothing, and yes that's a double negative...). However, curl is included on the image.)
   - curl -O https://raw.githubusercontent.com/agsdot/vagrant-archbox/master/bootstrap.sh
   - chmod +x bootstrap.sh
-  - ./bootstrap.sh
+  - sh bootstrap.sh
 
-After that is done, login as alarm (the default non root user) and change directory into /home/alarm/vagrant-archbox
-chmod +x the scripts, then run scripts in order of 1) basic_package.sh 2) smile_preparation.sh 3) smile_setup.sh (or alternatively run the in development rpi3_install.sh script)
+After that is done, login as alarm (the default non root user) and change directory into /home/alarm/vagrant-archbox then run the rpi3_install.sh script. From there you will have the option to install various applications (smile, kiwix, kalite, the portal page). Be sure to include the basic_package.sh file, it is required by all the other application scripts.
 
 Enjoy
 

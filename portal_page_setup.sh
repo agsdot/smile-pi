@@ -19,13 +19,6 @@ cd
 rm -rf ~/vagrant-archbox
 git clone https://github.com/agsdot/vagrant-archbox
 
-# if /vagrant directory exists, whether this script is running on vagrant or rpi3
-if [ -d /vagrant ]; then
-  sudo \cp ~/vagrant-archbox/setup_files/nginx.conf.vagrant /etc/nginx/nginx.conf
-else
-  sudo \cp ~/vagrant-archbox/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
-fi
-
 echo "prepare the portal page"
 
 cd ~
@@ -55,6 +48,45 @@ sudo rm -rf /usr/share/nginx/html/index.html
 sudo \cp -r ~/smile-plug-portal-web/target/assets/ /usr/share/nginx/html/assets/
 sudo \cp -r ~/smile-plug-portal-web/target/js/ /usr/share/nginx/html/js/
 sudo \cp -r ~/smile-plug-portal-web/target/index.html /usr/share/nginx/html/index.html
+
+echo "install and configure php tools needed for the shutdown / reboot script"
+echo "nginx php configurations and c installation"
+
+
+sudo pacman -S php-fpm --noconfirm --needed
+sudo systemctl enable php-fpm
+
+# if /vagrant directory exists, whether this script is running on vagrant or rpi3
+if [ -d /vagrant ]; then
+  sudo \cp ~/vagrant-archbox/setup_files/nginx.conf.vagrant /etc/nginx/nginx.conf
+else
+  sudo \cp ~/vagrant-archbox/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
+fi
+
+sudo systemctl stop nginx
+sudo systemctl stop php-fpm
+
+sudo systemctl start nginx
+sudo systemctl start php-fpm
+
+echo "setup shutdown_php.c and reboot_php.c files"
+
+cd /tmp
+\cp ~/vagrant-archbox/setup_files/shutdown_php.c /tmp/shutdown_php.c
+\cp ~/vagrant-archbox/setup_files/reboot_php.c /tmp/reboot_php.c
+
+gcc -o shutdown_php shutdown_php.c
+sudo mv shutdown_php /usr/local/bin/
+sudo chown root:root /usr/local/bin/shutdown_php
+sudo chmod 4755 /usr/local/bin/shutdown_php
+
+gcc -o reboot_php reboot_php.c
+sudo mv reboot_php /usr/local/bin/
+sudo chown root:root /usr/local/bin/reboot_php
+sudo chmod 4755 /usr/local/bin/reboot_php
+
+echo "put in a php info page"
+sudo \cp ~/vagrant-archbox/setup_files/info.php /usr/share/nginx/html/info.php
 
 echo "stop nginx and smile_backend service"
 sudo systemctl stop nginx
