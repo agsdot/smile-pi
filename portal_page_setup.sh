@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd
+cd -
 cd ~
 echo "smile plug portal page script"
 
@@ -35,7 +37,16 @@ sed -i 's@/smile/frontend/src/@/smile/@' home.js
 cd ~/smile-plug-portal-web/
 echo "build smile plug portal"
 
+LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
+
+cd ~/vagrant-archbox/
+GIT_HASH="$(git rev-parse HEAD)"
+
+sudo sed -i 's@Administer@Administer Smile Plug (SMILE_'"$LAST_FOUR_MAC_ADDRESS"')@' ~/smile-plug-portal-web/src/templates/admin.html
+sudo sed -i 's@breadcrumb-->@breadcrumb '"$GIT_HASH"' -->@' ~/smile-plug-portal-web/src/templates/admin.html
+
 #jake build
+cd ~/smile-plug-portal-web/
 PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/jake build
 
 cd ~/smile-plug-portal-web/target/

@@ -2,6 +2,14 @@
 
 echo "basic package"
 
+if [ -f "/usr/lib/systemd/system/create_ap.service" ]; then
+  echo "create_ap service and Wifi network already configured"
+  echo "re-download a fresh create_ap.service template and reconfigure"
+  cd ~
+  rm -rf ~/vagrant-archbox
+  git clone https://github.com/agsdot/vagrant-archbox
+fi
+
 if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
   echo "install bash-git-prompt"
 
@@ -38,28 +46,31 @@ echo "installing rubies and javascripts"
 ### manual install of nodejs 0.10.25 ###
 ### until fix found, the new version node 6.2 affects image upload and socket io ###
 
-cd ~ && mkdir node-v0.10.25
-cd node-v0.10.25
+if [ ! -f "$HOME/.node_module/bin/node" ]; then
+  echo "setup nodejs 0.10.25"
+  cd ~ && mkdir node-v0.10.25
+  cd node-v0.10.25
 
+  # If not vagrant, i.e. booting up a rpi3
+  if [ ! -d /vagrant ]; then
+    wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz --progress=bar:force
+    cd ~ && mkdir .node_modules
+    cd .node_modules
+    tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz
+  else
+    wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-x64.tar.gz --progress=bar:force
+    cd ~ && mkdir .node_modules
+    cd .node_modules
+    tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-x64.tar.gz
+  fi
 
-# If not vagrant, i.e. booting up a rpi3
-if [ ! -d /vagrant ]; then
-  wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz --progress=bar:force
-  cd ~ && mkdir .node_modules
-  cd .node_modules
-  tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz
-else
-  wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-x64.tar.gz --progress=bar:force
-  cd ~ && mkdir .node_modules
-  cd .node_modules
-  tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-x64.tar.gz
 fi
 
 ### manual install of nodejs 0.10.25 ###
 sudo pacman -S --noconfirm --needed python2
 sudo pacman -S --noconfirm --needed python2-pip
 sudo pacman -S --noconfirm --needed ruby
-echo "done with rubies and javascriptrs"
+echo "done with rubies and pythons"
 
 if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
@@ -92,23 +103,26 @@ echo "make npm up to date"
 PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g npm
 ####
 
-echo "yaourt install dependencies"
-sudo pacman -S --noconfirm --needed yajl
+if [ ! -f "/usr/bin/yaourt" ]; then
 
-cd /tmp
-git clone https://aur.archlinux.org/package-query.git
-cd package-query
-echo y | makepkg -si
-cd ..
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt
-echo y | makepkg -si
-cd ..
+  echo "yaourt install dependencies"
+  sudo pacman -S --noconfirm --needed yajl
 
-# If not vagrant, i.e. booting up a rpi3
-if [ ! -d /vagrant ]; then
-  echo "install create_ap"
-  yaourt -S --noconfirm create_ap
+  cd /tmp
+  git clone https://aur.archlinux.org/package-query.git
+  cd package-query
+  echo y | makepkg -si
+  cd ..
+  git clone https://aur.archlinux.org/yaourt.git
+  cd yaourt
+  echo y | makepkg -si
+  cd ..
+  # If not vagrant, i.e. booting up a rpi3
+  if [ ! -d /vagrant ]; then
+    echo "install create_ap"
+    yaourt -S --noconfirm create_ap
+  fi
+
 fi
 
 echo "install compass"
@@ -122,17 +136,28 @@ echo "install nginx"
 sudo pacman -S --noconfirm --needed nginx
 
 echo "setup create_ap"
+
+LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
+
 cd ~/vagrant-archbox/setup_files/
+sudo rm -rf /usr/lib/systemd/system/create_ap.service
 sudo cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service
+sudo sed -i 's@ SMILE @ SMILE_'"$LAST_FOUR_MAC_ADDRESS"' @' /usr/lib/systemd/system/create_ap.service
 
 # If not vagrant, i.e. booting up a rpi3
 #if [ ! -d /vagrant ]; then
   echo "systemctl for create_ap"
   sudo systemctl enable create_ap
+  sudo systemctl stop create_ap
   sudo systemctl start create_ap
 #fi
 
 echo "setup nginx conf files"
+
+cd ~
+git clone https://bitbucket.org/smileconsortium/smile_v2.git
+cd smile_v2
+git checkout -b plug origin/plug
 sudo cp ~/smile_v2/vagrant/nginx.conf /etc/nginx/nginx.conf
 sudo cp ~/smile_v2/vagrant/proxy.conf /etc/nginx/proxy.conf
 #https://stackoverflow.com/questions/584894/sed-scripting-environment-variable-substitution
@@ -150,4 +175,5 @@ sudo chmod +755 $HOME
 
 echo "systemctl for nginx"
 sudo systemctl enable nginx
+sudo systemctl stop nginx
 sudo systemctl start nginx
