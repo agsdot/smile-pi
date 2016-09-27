@@ -30,10 +30,8 @@ do
   thumbnail_name=${filename}_thumb.png
 
   echo " "
-  echo "Jonathan here"
   echo $filename
   echo $extension
-  echo "done yo"
   #cmd [option] "$file" >> results.out
 
   echo "Get first page of pdf and convert to a smaller sized png"
@@ -45,6 +43,8 @@ cd ~/ck12
 
 git clone https://github.com/canuk/bookshelf_maker
 cd ~/ck12/bookshelf_maker/
+
+sudo sed -i 's@bookshelf_title = "PDF Bookshelf"@bookshelf_title = "CK-12 Bookshelf"@' make_bookshelf.rb
 cp ~/vagrant-archbox/setup_files/ck12.png ~/ck12/bookshelf_maker/
 
 mkdir ~/ck12/bookshelf_maker/books
@@ -65,7 +65,7 @@ mv bookshelf_maker ck12
 
 sudo rm -rf /usr/share/nginx/html/ck12
 
-sudo mv ck12 /usr/share/nginx/html/
+sude mv ck12 /usr/share/nginx/html/
 
 echo "done"
 

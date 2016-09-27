@@ -22,6 +22,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", path: "kalite_setup.sh", privileged: false
   config.vm.provision "shell", path: "ck12_setup.sh", privileged: false
   config.vm.provision "shell", path: "app_programming_setup.sh", privileged: false
+  config.vm.provision "shell", path: "soe_setup.sh", privileged: false
   config.vm.provision "shell", path: "portal_page_setup.sh", privileged: false
 
   # Disable automatic box update checking. If you disable this, then

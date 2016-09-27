@@ -23,6 +23,7 @@ if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
   echo "cleanup bash-git-prompt install"
   rm -rf ~/bash-git-prompt
 fi
+curl -sSL http://git.io/git-extras-setup | sudo bash /dev/stdin
 
 if ( ! grep -q 'plugin' ~/.vimrc ); then
   echo "improve vim"

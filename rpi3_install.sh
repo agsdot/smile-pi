@@ -10,6 +10,7 @@ options=("basic_setup.sh - install common utilities and programs needed across t
          "kalite_setup.sh - install khan academy lite"
          "ck12_setup.sh - install CK12 textbooks"
          "app_programming_setup.sh - install code-monster and snap"
+         "soe_setup.sh - install Seeds of Empowerment children books"
          "portal_page_setup.sh - setup the smile plug portal page, configure nginx and links properly")
 
 bashscripts=("basic_setup.sh"
@@ -18,6 +19,7 @@ bashscripts=("basic_setup.sh"
              "kalite_setup.sh"
 	     "ck12_setup.sh"
 	     "app_programming_setup.sh"
+	     "soe_setup.sh"
              "portal_page_setup.sh")
 
 menu() {

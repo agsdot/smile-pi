@@ -6,5 +6,6 @@
 127.0.0.1	localhost.localdomain	localhost
 ::1		localhost.localdomain	localhost
 192.168.12.1	smile.dev	smile
+192.168.12.1	start.here	start
 
 # End of file
