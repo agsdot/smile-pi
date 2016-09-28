@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cd
 cd -
@@ -106,3 +106,6 @@ sudo systemctl stop smile_backend
 echo "start nginx and smile_backend service"
 sudo systemctl start nginx
 sudo systemctl start smile_backend
+
+cd; cd -
+cd ~/vagrant-archbox

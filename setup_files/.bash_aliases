@@ -18,6 +18,9 @@ alias pip=/usr/bin/pip2
 GEMPATH=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
 NODE_PATH=~/.node_modules/bin
 
+# to allow gs / ghostscript to work
+export GS_DEVICE=display
+
 export EDITOR=vim
 export PYTHON=python2
 export PATH=$PATH:$GEMPATH:$NODE_PATH

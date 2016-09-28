@@ -116,3 +116,6 @@ cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchd
 cd ~/smile_v2/backend/assets/couchdb/
 chmod +x couch_setup.sh
 sh couch_setup.sh
+
+cd; cd -
+cd ~/vagrant-archbox

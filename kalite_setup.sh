@@ -53,3 +53,6 @@ git clone https://github.com/agsdot/vagrant-archbox
 sudo cp ~/vagrant-archbox/setup_files/kalite.service /usr/lib/systemd/system/
 sudo systemctl enable kalite
 sudo systemctl start kalite
+
+cd; cd -
+cd ~/vagrant-archbox

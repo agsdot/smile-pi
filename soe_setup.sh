@@ -81,3 +81,6 @@ sudo rm -rf /usr/share/nginx/html/soe-bookshelf
 sudo mv soe-bookshelf /usr/share/nginx/html/
 
 echo "done"
+
+cd; cd -
+cd ~/vagrant-archbox

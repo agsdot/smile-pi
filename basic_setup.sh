@@ -23,6 +23,8 @@ if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
   echo "cleanup bash-git-prompt install"
   rm -rf ~/bash-git-prompt
 fi
+
+echo "Install TJ git-extras for nice extra git utilities"
 curl -sSL http://git.io/git-extras-setup | sudo bash /dev/stdin
 
 if ( ! grep -q 'plugin' ~/.vimrc ); then
@@ -178,3 +180,6 @@ echo "systemctl for nginx"
 sudo systemctl enable nginx
 sudo systemctl stop nginx
 sudo systemctl start nginx
+
+cd; cd -
+cd ~/vagrant-archbox

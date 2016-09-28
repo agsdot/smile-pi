@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # http://serverfault.com/questions/144939/multi-select-menu-in-bash-script
 # using this bash script rather than dialog or whiptail to make the script lightweight, portable
@@ -78,3 +78,6 @@ else
   echo " "
   exit 1
 fi
+
+cd; cd -
+cd ~/vagrant-archbox

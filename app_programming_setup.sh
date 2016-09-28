@@ -15,3 +15,6 @@ echo "move snap and code_monster to nginx"
 
 sudo mv snap /usr/share/nginx/html/
 sudo mv code_monster /usr/share/nginx/html/
+
+cd; cd -
+cd ~/vagrant-archbox

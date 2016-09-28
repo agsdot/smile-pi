@@ -72,3 +72,6 @@ sudo cp -rf kiwix.service /usr/lib/systemd/system/kiwix.service
 echo "systemctl for kiwix"
 sudo systemctl enable kiwix
 sudo systemctl start kiwix
+
+cd; cd -
+cd ~/vagrant-archbox
