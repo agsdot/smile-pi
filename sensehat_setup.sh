@@ -30,3 +30,7 @@ echo "device permissions"
 sudo usermod -a -G video alarm
 
 echo "systemctl service configurations"
+sudo cp /usr/lib/systemd/system/smileled.service /home/alarm/setup_files/smileled.service
+sudo systemctl start smileled
+sudo systemctl enable smileled
+
