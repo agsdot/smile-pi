@@ -8,11 +8,12 @@ cd sense-hat-2.2.0
 sudo python2 setup.py install --root=$pkgdir/ --optimize=1
 
 echo "sensehat python packages, about 10 minutes"
-sudo /usr/bin/pip2.7 install -U numpy
-sudo /usr/bin/pip2.7 install -U pillow
-sudo /usr/bin/pip2.7 install -U pathlib
+sudo PIP_NO_INPUT=1 /usr/bin/pip2.7 install -U numpy
+sudo PIP_NO_INPUT=1 /usr/bin/pip2.7 install -U pillow
+sudo PIP_NO_INPUT=1 /usr/bin/pip2.7 install -U pathlib
 
 echo "python library sensor prep"
+cd /home/alarm/
 git clone https://github.com/RPi-Distro/RTIMULib
 cd RTIMULib/Linux/python
 sudo /usr/bin/python2.7 setup.py build
