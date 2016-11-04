@@ -18,5 +18,6 @@ curl -X PUT http://127.0.0.1:5984/smile/_design/response --data-binary @./_desig
 curl -X PUT http://127.0.0.1:5984/smile/_design/session --data-binary @./_design.session.json 2>&1 > /dev/null
 curl -X PUT http://127.0.0.1:5984/smile/_design/user --data-binary @./_design.user.json 2>&1 > /dev/null
 curl -X PUT http://127.0.0.1:5984/smile/_design/message --data-binary @./_design.message.json 2>&1 > /dev/null
+curl -X PUT http://127.0.0.1:5984/smile/_design/usage --data-binary @./_design.usage.json 2>&1 > /dev/null
 #fi
 echo "done with couch script"
