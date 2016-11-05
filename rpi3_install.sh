@@ -11,7 +11,8 @@ options=("basic_setup.sh - install common utilities and programs needed across t
          "ck12_setup.sh - install CK12 textbooks"
          "app_programming_setup.sh - install code-monster and snap"
          "soe_setup.sh - install Seeds of Empowerment children books"
-         "portal_page_setup.sh - setup the smile plug portal page, configure nginx and links properly")
+         "portal_page_setup.sh - setup the smile plug portal page, configure nginx and links properly"
+         "sensehat_setup.sh - setup if sensehat LED is attached, reboot required")
 
 bashscripts=("basic_setup.sh"
              "smile_setup.sh"
@@ -20,7 +21,8 @@ bashscripts=("basic_setup.sh"
 	     "ck12_setup.sh"
 	     "app_programming_setup.sh"
 	     "soe_setup.sh"
-             "portal_page_setup.sh")
+             "portal_page_setup.sh"
+             "sensehat_setup.sh")
 
 menu() {
   clear
