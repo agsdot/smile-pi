@@ -23,18 +23,18 @@ echo "get latest pacman and install sensors"
 sudo pacman -Syu --noconfirm --needed
 sudo pacman -S --noconfirm --needed i2c-tools
 sudo pacman -S --noconfirm --needed lm_sensors
-sudo cat 'dtparam=i2c_arm=on' >> /boot/config.txt
-sudo cat 'i2c-dev' >> /etc/modules-load.d/raspberrypi.conf
-sudo cat 'i2c-bcm2708' >> /etc/modules-load.d/raspberrypi.conf
-
-echo "testing sensor data"
-sudo i2cdetect -y 1
+sudo bash -c 'echo "dtparam=i2c_arm=on" >> /boot/config.txt'
+sudo bash -c 'echo "i2c-dev" >> /etc/modules-load.d/raspberrypi.conf'
+sudo bash -c 'echo "i2c-bcm2708" >> /etc/modules-load.d/raspberrypi.conf'
 
 echo "device permissions"
 sudo usermod -a -G video alarm
 
+echo "testing sensor data"
+sudo i2cdetect -y 1
+
 echo "systemctl service configurations"
-sudo cp /usr/lib/systemd/system/smileled.service /home/alarm/setup_files/smileled.service
+sudo cp /home/alarm/vagrant-archbox/setup_files/smileled.service /usr/lib/systemd/system/smileled.service
 sudo systemctl start smileled
 sudo systemctl enable smileled
 
