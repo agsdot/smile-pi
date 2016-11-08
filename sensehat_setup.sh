@@ -7,7 +7,8 @@ tar -zxvf sense-hat-2.2.0.tar.gz
 cd sense-hat-2.2.0
 sudo python2 setup.py install --root=$pkgdir/ --optimize=1
 
-echo "sensehat python packages, about 10 minutes"
+echo "sensehat python packages, about 20 minutes"
+sudo pacman -S ghostscript --noconfirm --needed
 sudo PIP_NO_INPUT=1 /usr/bin/pip2.7 install -U numpy
 sudo PIP_NO_INPUT=1 /usr/bin/pip2.7 install -U pillow
 sudo PIP_NO_INPUT=1 /usr/bin/pip2.7 install -U pathlib
