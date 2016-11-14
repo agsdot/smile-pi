@@ -24,9 +24,15 @@ echo "get latest pacman and install sensors"
 sudo pacman -Syu --noconfirm --needed
 sudo pacman -S --noconfirm --needed i2c-tools
 sudo pacman -S --noconfirm --needed lm_sensors
-sudo bash -c 'echo "dtparam=i2c_arm=on" >> /boot/config.txt'
-sudo bash -c 'echo "i2c-dev" >> /etc/modules-load.d/raspberrypi.conf'
-sudo bash -c 'echo "i2c-bcm2708" >> /etc/modules-load.d/raspberrypi.conf'
+if ! grep -q 'dtparam=i2c_arm=on' "/boot/config.txt"; then
+  sudo bash -c 'echo "dtparam=i2c_arm=on" >> /boot/config.txt'
+fi
+if ! grep -q i2c-dev "/etc/modules-load.d/raspberrypi.conf"; then
+  sudo bash -c 'echo "i2c-dev" >> /etc/modules-load.d/raspberrypi.conf'
+fi
+if ! grep -q i2c-bcm2708 "/etc/modules-load.d/raspberrypi.conf"; then
+  sudo bash -c 'echo "i2c-bcm2708" >> /etc/modules-load.d/raspberrypi.conf'
+fi
 
 echo "device permissions"
 sudo usermod -a -G video alarm
