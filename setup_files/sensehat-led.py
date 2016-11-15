@@ -100,7 +100,7 @@ if __name__ == "__main__":
   ]
   
   sense.set_pixels(smile)
-  
+'''  
   while True:
   
     x,y,z = sense.get_accelerometer_raw().values()
@@ -134,3 +134,4 @@ if __name__ == "__main__":
         sense.set_rotation(0)
       else:
         sense.set_pixels(smile)
+'''
