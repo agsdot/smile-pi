@@ -21,6 +21,10 @@ curl -X PUT http://127.0.0.1:5984/smile/_design/message --data-binary @./_design
 curl -X PUT http://127.0.0.1:5984/smile/_design/usage --data-binary @./_design.usage.json 2>&1
 curl -X PUT http://127.0.0.1:5984/smile/0eeeb110f2dcfb68d7bc63ede2002b44 --data-binary @./smileadmin.user.json 2>&1
 curl -X PUT http://127.0.0.1:5984/smile/0eeeb110f2dcfb68d7bc63ede2002d47 --data-binary @./welcometosmile.group.json 2>&1
+curl -X PUT http://127.0.0.1:5984/smile/76031776fafff370d5fedbef08003dae --data-binary @./creatingquestions.activity.json 2>&1
+curl -X PUT http://127.0.0.1:5984/smile/76031776fafff370d5fedbef08003b98 --data-binary @./creatingquestions.session.json 2>&1
+curl -X PUT http://127.0.0.1:5984/smile/76031776fafff370d5fedbef0800508a --data-binary @./creatingquestions.resource.json 2>&1
+
 
 #fi
 echo "done with couch script"
