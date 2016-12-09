@@ -33,5 +33,8 @@ sudo \cp -r ~/smile-plug-portal-web/target/assets/ /usr/share/nginx/html/assets/
 sudo \cp -r ~/smile-plug-portal-web/target/js/ /usr/share/nginx/html/js/
 sudo \cp -r ~/smile-plug-portal-web/target/index.html /usr/share/nginx/html/index.html
 
+echo "restart nginx"
+sudo systemctl restart nginx
+
 cd; cd -
 cd ~/vagrant-archbox

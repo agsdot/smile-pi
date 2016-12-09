@@ -26,6 +26,9 @@ sudo chmod +755 $HOME/smile_v2/backend/main.js
 echo "restart smile_backend"
 sudo systemctl restart smile_backend
 
+echo "restart nginx"
+sudo systemctl restart nginx
+
 cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
 cd ~/smile_v2/backend/assets/couchdb/
 chmod +x couch_setup.sh
