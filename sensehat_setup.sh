@@ -21,7 +21,7 @@ sudo /usr/bin/python2.7 setup.py build
 sudo /usr/bin/python2.7 setup.py install
 
 echo "get latest pacman and install sensors"
-sudo pacman -Syu --noconfirm --needed
+sudo pacman -Sy --noconfirm --needed
 sudo pacman -S --noconfirm --needed i2c-tools
 sudo pacman -S --noconfirm --needed lm_sensors
 if ! grep -q 'dtparam=i2c_arm=on' "/boot/config.txt"; then
