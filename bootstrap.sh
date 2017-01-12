@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 pacman -Syu --noconfirm --needed
-pacman -S --noconfirm --needed --force base-devel git wget unzip vim emacs-nox tmux dialog
+# parted libnewt (for whiptail) are needed for resizing restoring an installed image to fullsize
+pacman -S --noconfirm --needed --force base-devel git wget unzip vim emacs-nox tmux dialog parted libnewt
 
 ## for tmux
 sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen

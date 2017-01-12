@@ -106,27 +106,30 @@ echo "make npm up to date"
 PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g npm
 ####
 
-if [ ! -f "/usr/bin/yaourt" ]; then
+#if [ ! -f "/usr/bin/yaourt" ]; then
+#
+#  echo "yaourt install dependencies"
+#  sudo pacman -S --noconfirm --needed yajl
+#
+#  cd /tmp
+#  git clone https://aur.archlinux.org/package-query.git
+#  cd package-query
+#  echo y | makepkg -si
+#  cd ..
+#  git clone https://aur.archlinux.org/yaourt.git
+#  cd yaourt
+#  echo y | makepkg -si
+#  cd ..
+#  # If not vagrant, i.e. booting up a rpi3
+#  if [ ! -d /vagrant ]; then
+#    echo "install create_ap"
+#    yaourt -S --noconfirm create_ap
+#  fi
+#
+#fi
 
-  echo "yaourt install dependencies"
-  sudo pacman -S --noconfirm --needed yajl
-
-  cd /tmp
-  git clone https://aur.archlinux.org/package-query.git
-  cd package-query
-  echo y | makepkg -si
-  cd ..
-  git clone https://aur.archlinux.org/yaourt.git
-  cd yaourt
-  echo y | makepkg -si
-  cd ..
-  # If not vagrant, i.e. booting up a rpi3
-  if [ ! -d /vagrant ]; then
-    echo "install create_ap"
-    yaourt -S --noconfirm create_ap
-  fi
-
-fi
+# pacman now has create_ap in it's repo
+sudo pacman -S --noconfirm --needed create_ap
 
 echo "install compass"
 gem install compass --no-ri --no-rdoc
