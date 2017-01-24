@@ -1,95 +1,61 @@
 #!/usr/bin/env bash
 
-# http://serverfault.com/questions/144939/multi-select-menu-in-bash-script
-# using this bash script rather than dialog or whiptail to make the script lightweight, portable
-# and able to run if dialog or whiptail are not preinstalled
+#https://www.cyberciti.biz/faq/howto-find-out-or-learn-harddisk-size-in-linux-or-unix/
+#http://stackoverflow.com/questions/19703621/get-free-disk-space-with-df-to-just-display-free-space-in-kb
+diskspace=$(sudo fdisk -l | grep "GiB" | awk '{print $3}' | tail -1)
+setup_scripts_path="/home/alarm/vagrant-archbox/setup_scripts/"
 
-SCRIPTS_DIRECTORY="/home/alarm/vagrant-archbox/setup_scripts/"
-options=("basic_setup.sh - install common utilities and programs needed across the board, e.g. node, python, etc"
-         "smile_setup.sh - install and implement Smile, including scripts to autostart services"
-         "kiwix_wikipedia_setup.sh - install wikipedia"
-         "kalite_setup.sh - install khan academy lite"
-         "ck12_setup.sh - install CK12 textbooks"
-         "app_programming_setup.sh - install code-monster and snap"
-         "soe_setup.sh - install Seeds of Empowerment children books"
-         "portal_page_setup.sh - setup the smile plug portal page, configure nginx and links properly"
-         "sensehat_setup.sh - setup if sensehat LED is attached, reboot required"
-         "update_ap.sh - update the wireless access point name, e.g. SMILE_12AS"
-         "update_portal.sh - update the smile portal page, refresh what the network id of the smile device is"
-         "update_smile.sh - update smile subsystems"
-         "maximizeImageSize.sh - increase image size of freshly imaged SD card, partition and filesystem")
-
-
-bashscripts=("${SCRIPTS_DIRECTORY}basic_setup.sh"
-             "${SCRIPTS_DIRECTORY}smile_setup.sh"
-             "${SCRIPTS_DIRECTORY}kiwix_wikipedia_setup.sh"
-             "${SCRIPTS_DIRECTORY}kalite_setup.sh"
-             "${SCRIPTS_DIRECTORY}ck12_setup.sh"
-             "${SCRIPTS_DIRECTORY}app_programming_setup.sh"
-             "${SCRIPTS_DIRECTORY}soe_setup.sh"
-             "${SCRIPTS_DIRECTORY}portal_page_setup.sh"
-             "${SCRIPTS_DIRECTORY}sensehat_setup.sh"
-             "${SCRIPTS_DIRECTORY}update_ap.sh"
-             "${SCRIPTS_DIRECTORY}update_portal.sh"
-             "${SCRIPTS_DIRECTORY}update_smile.sh"
-             "${SCRIPTS_DIRECTORY}maximizeImageSize.sh")
-
-menu() {
+#http://xmodulo.com/create-dialog-boxes-interactive-shell-script.html
+if (whiptail --title "Maximize Hard Drive Yes/No Box" --yes-button "Yes" --no-button "No"  --yesno "Does your ${diskspace} gb SD Card need to be resized / maximized?" 10 70) then
   clear
-  echo " "
-  echo "Stanford GSE-IT Raspberry Pi Installation Kit "
-  echo " "
-  echo "Available options:"
-  for i in ${!options[@]}; do
-    printf "%3d%s) %s\n" $((i+1)) "${choices[i]:- }" "${options[i]}"
-  done
-  [[ "$msg" ]] && echo "$msg" || echo " ";
-  echo " "
-}
-
-prompt="Check an option (again to uncheck, ENTER when done): "
-while menu && read -rp "$prompt" num && [[ "$num" ]]; do
-  [[ "$num" != *[![:digit:]]* ]] &&
-  (( num > 0 && num <= ${#options[@]} )) ||
-  { msg="Invalid option: $num"; continue; }
-  ((num--)); msg="${bashscripts[num]} was ${choices[num]:+un}checked"
-  [[ "${choices[num]}" ]] && choices[num]="" || choices[num]="+"
-done
-
-clear
-
-totalchoices="nothing"
-for i in ${!options[@]}; do
-  [[ "${choices[i]}" ]] && { totalchoices=""; }
-done
-if [ "$totalchoices" == "nothing" ]; then
   echo ""
-  echo "Exiting rpi3_install script. A selection was not made. Rerun this script when package selection is made."
   echo ""
-  exit 1
-fi
+  echo ""
+  echo "maximizeImageSize.sh will be run. It will increase the image size of your imaged SD card, partition and filesystem."
+  echo ""
+  echo "The script will cause a reboot of the system. Upon reboot, run the rpi3_script.sh once again and resume."
+  echo ""
+  echo ""
+  bash "${setup_scripts_path}maximizeImageSize.sh"
 
-echo "You selected to install and run the following:"
-for i in ${!options[@]}; do
-  [[ "${choices[i]}" ]] && { echo "${options[i]}"; }
-done
-echo " "
-
-#http://stackoverflow.com/questions/1885525/how-do-i-prompt-a-user-for-confirmation-in-bash-script
-#https://gist.github.com/agsdot/1df63a328be1f01bda23ec1aa7942a45
-read -p "Are you sure you want to proceed (y/n)? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-  echo "Now let's run the the install scripts!"
-  for i in ${!options[@]}; do
-    [[ "${choices[i]}" ]] && { sh ${bashscripts[i]}; }
-  done
 else
-  echo "Exiting rpi3_install script, run again at your convenience"
-  echo " "
-  exit 1
-fi
+  #echo "You chose M&M's. Exit status was $?."
+  OPTIONS=$(whiptail --title "Stanford GSE-IT Raspberry Pi Installation Kit" --checklist  "Select the script to run" 24 130 16 \
+  "basic_setup.sh" "Install common utilities and programs needed across the board, e.g. node, python, etc" OFF \
+  "smile_setup.sh" "Install and implement Smile, including scripts to autostart services" OFF \
+  "kiwix_wikipedia_setup.sh" "Install wikipedia" OFF \
+  "kalite_setup.sh" "Install khan academy lite" OFF \
+  "ck12_setup.sh" "Install CK12 textbooks" OFF \
+  "app_programming_setup.sh" "Install code-monster and snap" OFF \
+  "soe_setup.sh" "Install Seeds of Empowerment children books" OFF \
+  "portal_page_setup.sh" "Setup the smile plug portal page, configure nginx and links properly" OFF \
+  "sensehat_setup.sh" "Setup if sensehat LED is attached, reboot required" OFF \
+  "update_ap.sh" "Update the wireless access point name, e.g. SMILE_12AS" OFF \
+  "update_portal.sh" "Update the smile portal page, refresh what the network id of the smile device is" OFF \
+  "update_smile.sh" "Update smile subsystems" OFF 3>&1 1>&2 2>&3)
 
-cd; cd -
-cd ~/vagrant-archbox
+  exitstatus=$?
+
+  setup_scripts_path="/home/alarm/vagrant-archbox/setup_scripts/"
+
+  if [ $exitstatus = 0 ]; then
+    clear
+
+    #http://unix.stackexchange.com/questions/146942/how-can-i-test-if-a-variable-is-empty-or-contains-only-spaces
+    if [[ -z "${OPTIONS// }" ]]; then
+      echo "No scripts were selected"
+    else
+      echo "The chosen scripts are:" $OPTIONS
+      for script in ${OPTIONS[@]}; do
+        #http://stackoverflow.com/questions/9733338/shell-script-remove-first-and-last-quote-from-a-variable
+        script_name="${script%\"}"
+        script_name="${script_name#\"}"
+        bash "$setup_scripts_path$script_name"
+      done
+    fi
+  else
+    clear
+    echo "You chose Cancel."
+  fi
+
+fi
