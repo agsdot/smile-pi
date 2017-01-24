@@ -4,6 +4,7 @@
 # using this bash script rather than dialog or whiptail to make the script lightweight, portable
 # and able to run if dialog or whiptail are not preinstalled
 
+SCRIPTS_DIRECTORY="/home/alarm/vagrant-archbox/setup_scripts/"
 options=("basic_setup.sh - install common utilities and programs needed across the board, e.g. node, python, etc"
          "smile_setup.sh - install and implement Smile, including scripts to autostart services"
          "kiwix_wikipedia_setup.sh - install wikipedia"
@@ -12,17 +13,26 @@ options=("basic_setup.sh - install common utilities and programs needed across t
          "app_programming_setup.sh - install code-monster and snap"
          "soe_setup.sh - install Seeds of Empowerment children books"
          "portal_page_setup.sh - setup the smile plug portal page, configure nginx and links properly"
-         "sensehat_setup.sh - setup if sensehat LED is attached, reboot required")
+         "sensehat_setup.sh - setup if sensehat LED is attached, reboot required"
+         "update_ap.sh - update the wireless access point name, e.g. SMILE_12AS"
+         "update_portal.sh - update the smile portal page, refresh what the network id of the smile device is"
+         "update_smile.sh - update smile subsystems"
+         "maximizeImageSize.sh - increase image size of freshly imaged SD card, partition and filesystem")
 
-bashscripts=("basic_setup.sh"
-             "smile_setup.sh"
-             "kiwix_wikipedia_setup.sh"
-             "kalite_setup.sh"
-	     "ck12_setup.sh"
-	     "app_programming_setup.sh"
-	     "soe_setup.sh"
-             "portal_page_setup.sh"
-             "sensehat_setup.sh")
+
+bashscripts=("${SCRIPTS_DIRECTORY}basic_setup.sh"
+             "${SCRIPTS_DIRECTORY}smile_setup.sh"
+             "${SCRIPTS_DIRECTORY}kiwix_wikipedia_setup.sh"
+             "${SCRIPTS_DIRECTORY}kalite_setup.sh"
+             "${SCRIPTS_DIRECTORY}ck12_setup.sh"
+             "${SCRIPTS_DIRECTORY}app_programming_setup.sh"
+             "${SCRIPTS_DIRECTORY}soe_setup.sh"
+             "${SCRIPTS_DIRECTORY}portal_page_setup.sh"
+             "${SCRIPTS_DIRECTORY}sensehat_setup.sh"
+             "${SCRIPTS_DIRECTORY}update_ap.sh"
+             "${SCRIPTS_DIRECTORY}update_portal.sh"
+             "${SCRIPTS_DIRECTORY}update_smile.sh"
+             "${SCRIPTS_DIRECTORY}maximizeImageSize.sh")
 
 menu() {
   clear
@@ -33,7 +43,7 @@ menu() {
   for i in ${!options[@]}; do
     printf "%3d%s) %s\n" $((i+1)) "${choices[i]:- }" "${options[i]}"
   done
-	[[ "$msg" ]] && echo "$msg" || echo " ";
+  [[ "$msg" ]] && echo "$msg" || echo " ";
   echo " "
 }
 

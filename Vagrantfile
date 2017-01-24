@@ -15,15 +15,15 @@ Vagrant.configure("2") do |config|
   config.vm.box = "bugyt/archlinux"
   #config.vm.provision :shell, :path => "bootstrap.sh"
 
-  config.vm.provision "shell", path: "bootstrap.sh", privileged: true
-  config.vm.provision "shell", path: "basic_setup.sh", privileged: false
-  config.vm.provision "shell", path: "smile_setup.sh", privileged: false
-  config.vm.provision "shell", path: "kiwix_wikipedia_setup.sh", privileged: false
-  config.vm.provision "shell", path: "kalite_setup.sh", privileged: false
-  config.vm.provision "shell", path: "ck12_setup.sh", privileged: false
-  config.vm.provision "shell", path: "app_programming_setup.sh", privileged: false
-  config.vm.provision "shell", path: "soe_setup.sh", privileged: false
-  config.vm.provision "shell", path: "portal_page_setup.sh", privileged: false
+  config.vm.provision "shell", path: "bootstrap.sh",                           privileged: true
+  config.vm.provision "shell", path: "setup_scripts/basic_setup.sh",           privileged: false
+  config.vm.provision "shell", path: "setup_scripts/smile_setup.sh",           privileged: false
+  config.vm.provision "shell", path: "setup_scripts/kiwix_wikipedia_setup.sh", privileged: false
+  config.vm.provision "shell", path: "setup_scripts/kalite_setup.sh",          privileged: false
+  config.vm.provision "shell", path: "setup_scripts/ck12_setup.sh",            privileged: false
+  config.vm.provision "shell", path: "setup_scripts/app_programming_setup.sh", privileged: false
+  config.vm.provision "shell", path: "setup_scripts/soe_setup.sh",             privileged: false
+  config.vm.provision "shell", path: "setup_scripts/portal_page_setup.sh",     privileged: false
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80,   host: 8080
   config.vm.network "forwarded_port", guest: 8001, host: 8001
   config.vm.network "forwarded_port", guest: 8008, host: 8008
 

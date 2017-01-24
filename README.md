@@ -11,7 +11,7 @@ On a rpi3, login in as root (the image should have a minimal amount of packages 
   - chmod +x bootstrap.sh
   - sh bootstrap.sh
 
-After that is done, login as alarm (the default non root user) and change directory into /home/alarm/vagrant-archbox then run the rpi3_install.sh script. From there you will have the option to install various applications (smile, kiwix, kalite, the portal page). Be sure to include the basic_setup.sh file, it is required by all the other application scripts.
+After that is done, login as alarm (the default non root user) and in the home directory run "bash setup_files/rpi3_install.sh". From there you will have the option to install various applications (smile, kiwix, kalite, the portal page). Be sure to include the basic_setup.sh file, it is required by all the other application scripts.
 
 Enjoy
 
