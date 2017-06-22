@@ -2,7 +2,7 @@ A Vagrant setup that can be applied to 1) a Vagrant box to build a [Archlinux](h
 
 To do the first option, download [virtualbox](https://www.virtualbox.org/wiki/Downloads), [vagrant](https://www.vagrantup.com/downloads.html), and clone this github repo, then run a "vagrant up" and in 20 minutes you'll have a smile instance running. Just goto http://localhost:8080 .
 
-To do the second option, first create an archlinuxarm image on a microsd card according to the [instructions](https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3) on the archlinuxarm site (PSA: once you create a good image, create a clone of that sd card using dd on a mac or linux, or [Apple Pi Baker](http://www.tweaking4all.com/software/macosx-software/macosx-apple-pi-baker/) on a mac).
+To do the second option, first create an Raspbian Jesse Lite image on a microsd card. (PSA: once you create a good image, create a clone of that sd card using dd on a mac or linux, or [Apple Pi Baker](http://www.tweaking4all.com/software/macosx-software/macosx-apple-pi-baker/) on a mac).
 
 Place the microsd in the raspberry pi and boot it up.
 
