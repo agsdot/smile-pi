@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-
-sudo apt-get -y update && sudo apt-get -y dist-upgrade
+apt-get -y install git
+apt-get -y update && sudo apt-get -y dist-upgrade
 
 ## for tmux
 sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen

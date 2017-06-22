@@ -77,7 +77,7 @@ sudo npm install -g npm
 #https://github.com/oblique/create_ap
 echo "install create_ap"
 sudo apt-get --yes --force-yes install hostapd dnsmasq
-git clone https://github.com/oblique/create_ap
+git clone https://github.com/oblique/create_ap ~/create_ap
 cd create_ap
 sudo make install
 
