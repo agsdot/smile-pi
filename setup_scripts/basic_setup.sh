@@ -7,7 +7,7 @@ if [ -f "/usr/lib/systemd/system/create_ap.service" ]; then
   echo "re-download a fresh create_ap.service template and reconfigure"
   cd ~
   rm -rf ~/vagrant-archbox
-  git clone https://github.com/agsdot/vagrant-archbox
+  git clone https://github.com/canuk/vagrant-archbox
 fi
 
 if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
@@ -43,37 +43,15 @@ then
 fi
 
 echo "installing rubies and javascripts"
-# sudo pacman -S --noconfirm --needed nodejs
-# sudo pacman -S --noconfirm --needed npm
-
-### manual install of nodejs 0.10.25 ###
-### until fix found, the new version node 6.2 affects image upload and socket io ###
-
-if [ ! -f "$HOME/.node_module/bin/node" ]; then
-  echo "setup nodejs 0.10.25"
-  cd ~ && mkdir node-v0.10.25
-  cd node-v0.10.25
-
-  # If not vagrant, i.e. booting up a rpi3
-  if [ ! -d /vagrant ]; then
-    wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz --progress=bar:force
-    cd ~ && mkdir .node_modules
-    cd .node_modules
-    tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-arm-pi.tar.gz
-  else
-    wget http://nodejs.org/dist/v0.10.25/node-v0.10.25-linux-x64.tar.gz --progress=bar:force
-    cd ~ && mkdir .node_modules
-    cd .node_modules
-    tar --strip-components 1 -xzf ~/node-v0.10.25/node-v0.10.25-linux-x64.tar.gz
-  fi
-
-fi
-
-### manual install of nodejs 0.10.25 ###
-sudo pacman -S --noconfirm --needed python2
-sudo pacman -S --noconfirm --needed python2-pip
-sudo pacman -S --noconfirm --needed ruby
+sudo apt-get --yes --force-yes install nodejs
+sudo apt-get --yes --force-yes install python
+sudo apt-get --yes --force-yes install python-pip
+sudo apt-get --yes --force-yes install ruby
+sudo apt-get --yes --force-yes install ruby-dev
 echo "done with rubies and pythons"
+
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
@@ -93,56 +71,29 @@ if [ ! -f ~/.bash_aliases ]; then
 fi
 source ~/.bash_aliases
 
-# for npm stuffs #
-# source ~/.bash_aliases
-# http://stackoverflow.com/questions/30281057/node-forever-usr-bin-env-node-no-such-file-or-directory
-# https://github.com/nodejs/node-v0.x-archive/issues/3911
-#echo "softlink node and npm to /usr/bin location"
-#sudo ln -s "$(which node)" /usr/bin/node
-#sudo ln -s "$(which npm)" /usr/bin/npm
 echo "make npm up to date"
-#$HOME/.node_modules/bin/npm config set python /usr/bin/python2
-#https://github.com/nodejs/node-v0.x-archive/issues/3911
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g npm
-####
+sudo npm install -g npm
 
-#if [ ! -f "/usr/bin/yaourt" ]; then
-#
-#  echo "yaourt install dependencies"
-#  sudo pacman -S --noconfirm --needed yajl
-#
-#  cd /tmp
-#  git clone https://aur.archlinux.org/package-query.git
-#  cd package-query
-#  echo y | makepkg -si
-#  cd ..
-#  git clone https://aur.archlinux.org/yaourt.git
-#  cd yaourt
-#  echo y | makepkg -si
-#  cd ..
-#  # If not vagrant, i.e. booting up a rpi3
-#  if [ ! -d /vagrant ]; then
-#    echo "install create_ap"
-#    yaourt -S --noconfirm create_ap
-#  fi
-#
-#fi
+#https://github.com/oblique/create_ap
+echo "install create_ap"
+sudo apt-get --yes --force-yes install hostapd dnsmasq
+git clone https://github.com/oblique/create_ap
+cd create_ap
+sudo make install
 
-# pacman now has create_ap in it's repo
-sudo pacman -S --noconfirm --needed create_ap
-
+# need to reboot before installing compass
 echo "install compass"
-gem install compass --no-ri --no-rdoc
+sudo gem install compass --no-ri --no-rdoc
 
 #https://github.com/nodejs/node-gyp/issues/454
 echo "install node-gyp"
-$HOME/.node_modules/bin/npm install -g node-gyp
+sudo npm install -g node-gyp
 
 echo "install nginx"
-sudo pacman -S --noconfirm --needed nginx
+sudo apt-get --yes --force-yes install nginx
 
 echo "setup create_ap"
-
+#note to self, Raspbian Jesse Lite already uses systemd
 LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
 
 cd ~/vagrant-archbox/setup_files/

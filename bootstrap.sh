@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-pacman -Syu --noconfirm --needed
-# parted libnewt (for whiptail) are needed for resizing restoring an installed image to fullsize
-pacman -S --noconfirm --needed --force base-devel git wget unzip vim emacs-nox tmux dialog parted libnewt
+sudo apt-get -y update && sudo apt-get -y dist-upgrade
 
 ## for tmux
 sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen
@@ -17,8 +15,8 @@ if [ -d /vagrant ]; then
   NON_ROOT_HOME=/home/vagrant
   NON_ROOT_USER=vagrant
 else
-  NON_ROOT_HOME=/home/alarm
-  NON_ROOT_USER=alarm
+  NON_ROOT_HOME=/home/pi
+  NON_ROOT_USER=pi
 fi
 
 echo " "
@@ -33,7 +31,7 @@ echo " "
 if [ ! -d $NON_ROOT_HOME/vagrant-archbox ]; then
   echo "get me some vagrant - archbox stuff"
   cd $NON_ROOT_HOME
-  git clone https://github.com/agsdot/vagrant-archbox $NON_ROOT_HOME/vagrant-archbox
+  git clone https://github.com/canuk/vagrant-archbox $NON_ROOT_HOME/vagrant-archbox
   chown -R $NON_ROOT_USER:$NON_ROOT_USER $NON_ROOT_HOME/vagrant-archbox
 fi
 

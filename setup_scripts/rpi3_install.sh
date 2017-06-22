@@ -3,7 +3,7 @@
 #https://www.cyberciti.biz/faq/howto-find-out-or-learn-harddisk-size-in-linux-or-unix/
 #http://stackoverflow.com/questions/19703621/get-free-disk-space-with-df-to-just-display-free-space-in-kb
 diskspace=$(sudo fdisk -l | grep "GiB" | awk '{print $3}' | tail -1)
-setup_scripts_path="/home/alarm/vagrant-archbox/setup_scripts/"
+setup_scripts_path="/home/pi/vagrant-archbox/setup_scripts/"
 
 #http://xmodulo.com/create-dialog-boxes-interactive-shell-script.html
 if (whiptail --title "Maximize Hard Drive Yes/No Box" --yes-button "Yes" --no-button "No"  --yesno "Does your ${diskspace} gb SD Card need to be resized / maximized?" 10 70) then
@@ -36,7 +36,7 @@ else
 
   exitstatus=$?
 
-  setup_scripts_path="/home/alarm/vagrant-archbox/setup_scripts/"
+  setup_scripts_path="/home/pi/vagrant-archbox/setup_scripts/"
 
   if [ $exitstatus = 0 ]; then
     clear
