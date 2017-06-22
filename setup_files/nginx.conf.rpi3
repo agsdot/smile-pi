@@ -43,7 +43,7 @@ http {
         #}
 
         location /smile {
-            alias  /home/alarm/smile_v2/frontend/src;
+            alias  /home/pi/smile_v2/frontend/src;
             index  index.html index.htm;
         }
         location ~ \.php$ {

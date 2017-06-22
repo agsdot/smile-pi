@@ -7,11 +7,11 @@ To do the second option, first create an archlinuxarm image on a microsd card ac
 Place the microsd in the raspberry pi and boot it up.
 
 On a rpi3, login in as root (the image should have a minimal amount of packages on it; no git, no wget, no sudo, etc (no nothing, and yes that's a double negative...). However, curl is included on the image.)
-  - curl -O https://raw.githubusercontent.com/agsdot/vagrant-archbox/master/bootstrap.sh
+  - curl -O https://raw.githubusercontent.com/canuk/vagrant-archbox/master/bootstrap.sh
   - chmod +x bootstrap.sh
   - sh bootstrap.sh
 
-After that is done, login as alarm (the default non root user) and in the home directory run "bash ~/rpi3_install.sh". From there you will have the option to install various applications (smile, kiwix, kalite, the portal page). Be sure to include the basic_setup.sh file, it is required by all the other application scripts.
+After that is done, login as pi (the default non root user) and in the home directory run "bash ~/rpi3_install.sh". From there you will have the option to install various applications (smile, kiwix, kalite, the portal page). Be sure to include the basic_setup.sh file, it is required by all the other application scripts.
 
 Enjoy
 

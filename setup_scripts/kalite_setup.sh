@@ -48,7 +48,7 @@ echo "DO_NOT_RELOAD_CONTENT_CACHE_AT_STARTUP = False" >> ~/.kalite/settings.py
 
 cd ~
 rm -rf ~/vagrant-archbox
-git clone https://github.com/agsdot/vagrant-archbox
+git clone https://github.com/canuk/vagrant-archbox
 
 sudo cp ~/vagrant-archbox/setup_files/kalite.service /usr/lib/systemd/system/
 sudo systemctl enable kalite

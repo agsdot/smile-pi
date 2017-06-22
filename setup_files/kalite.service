@@ -3,8 +3,8 @@ Description=Start KA Lite Web Service
 After=network.target
 
 [Service]
-User=alarm
-Group=alarm
+User=pi
+Group=pi
 
 Type=simple
 ExecStart=/usr/bin/kalite start

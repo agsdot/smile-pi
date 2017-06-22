@@ -7,7 +7,7 @@ alias gst='git status -bs'
 alias ls='ls -aF --color'
 alias vi=vim
 
-alias python=/usr/bin/python2
+alias python=/usr/bin/python
 alias pip=/usr/bin/pip2
 
 #export NODE_PATH=~/.node_modules/lib/node_modules:$NODE_PATH
@@ -22,5 +22,5 @@ NODE_PATH=~/.node_modules/bin
 export GS_DEVICE=display
 
 export EDITOR=vim
-export PYTHON=python2
+export PYTHON=python
 export PATH=$PATH:$GEMPATH:$NODE_PATH

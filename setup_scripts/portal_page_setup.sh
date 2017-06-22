@@ -19,7 +19,7 @@ sudo \cp /usr/share/nginx/html/index.html /usr/share/nginx/html/index_original.h
 
 cd
 rm -rf ~/vagrant-archbox
-git clone https://github.com/agsdot/vagrant-archbox
+git clone https://github.com/canuk/vagrant-archbox
 
 echo "prepare the portal page"
 

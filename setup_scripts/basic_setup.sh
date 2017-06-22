@@ -57,7 +57,7 @@ if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
   touch ~/.npmrc
   echo "prefix=${HOME}/.node_modules" >> ~/.npmrc
-  echo "python=/usr/bin/python2" >> ~/.npmrc
+  echo "python=/usr/bin/python" >> ~/.npmrc
 fi
 
 if [ ! -f ~/.gitconfig ]; then
