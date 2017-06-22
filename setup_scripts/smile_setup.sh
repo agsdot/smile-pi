@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 echo "install redis and hiredis"
-sudo pacman -S --noconfirm --needed redis
-sudo pacman -S --noconfirm --needed hiredis
+sudo apt-get --yes --force-yes install redis-server
 
-$HOME/.node_modules/bin/npm install -g hiredis
-$HOME/.node_modules/bin/npm install -g redis
+
+sudo npm install --unsafe-perm -g hiredis
+sudo npm install --unsafe-perm -g redis
 
 echo "install couchdb"
-sudo pacman -S --noconfirm --needed couchdb
+sudo apt-get --yes --force-yes install couchdb
 
 #echo "install elasticsearch"
 #sudo pacman -S --noconfirm --needed elasticsearch
