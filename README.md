@@ -7,6 +7,9 @@ To do the second option, first create an Raspbian Jesse Lite image on a microsd 
 Place the microsd in the raspberry pi and boot it up.
 
 On a rpi3, login in as root (the image should have a minimal amount of packages on it; no git, no wget, no sudo, etc (no nothing, and yes that's a double negative...). However, curl is included on the image.)
+
+`sudo passwd`
+
   - curl -O https://raw.githubusercontent.com/canuk/vagrant-archbox/master/bootstrap.sh
   - chmod +x bootstrap.sh
   - sh bootstrap.sh

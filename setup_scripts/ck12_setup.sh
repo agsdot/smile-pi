@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+    #!/usr/bin/env bash
 
 echo "setup ck-12 pdf textbooks"
 
-sudo pacman -Syyu --noconfirm --needed
-sudo pacman -S ghostscript --noconfirm --needed
+
+sudo apt-get --yes --force-yes install ghostscript
 #sudo pacman -S imagemagick --noconfirm --needed
-sudo pacman -S aria2       --noconfirm --needed
+sudo apt-get --yes --force-yes install aria2
 
 #might be needed for gs to work, display
 #sudo pacman -S xorg-server   --noconfirm --needed

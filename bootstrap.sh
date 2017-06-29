@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 apt-get -y install git
 apt-get -y update && sudo apt-get -y dist-upgrade
+apt-get -y install exfat-fuse
 
 ## for tmux
 sed -i 's@#en_US.UTF-8 UTF-8@en_US.UTF-8 UTF-8@' /etc/locale.gen

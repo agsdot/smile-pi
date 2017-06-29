@@ -63,9 +63,8 @@ sudo \cp -r ~/smile-plug-portal-web/target/index.html /usr/share/nginx/html/inde
 echo "install and configure php tools needed for the shutdown / reboot script"
 echo "nginx php configurations and c installation"
 
-
-sudo pacman -S php-fpm --noconfirm --needed
-sudo systemctl enable php-fpm
+sudo apt-get --yes --force-yes install php5-fpm
+sudo systemctl enable php5-fpm
 
 # if /vagrant directory exists, whether this script is running on vagrant or rpi3
 if [ -d /vagrant ]; then
@@ -75,10 +74,10 @@ else
 fi
 
 sudo systemctl stop nginx
-sudo systemctl stop php-fpm
+sudo systemctl stop php5-fpm
 
 sudo systemctl start nginx
-sudo systemctl start php-fpm
+sudo systemctl start php5-fpm
 
 echo "setup shutdown_php.c and reboot_php.c files"
 
