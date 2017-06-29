@@ -20,7 +20,7 @@ if (whiptail --title "Maximize Hard Drive Yes/No Box" --yes-button "Yes" --no-bu
 
 else
   #echo "You chose M&M's. Exit status was $?."
-  OPTIONS=$(whiptail --cr-wrap --title "Edify SMILE Raspberry Pi Installation Kit" --checklist  "Select the script to run" 24 78 16 \
+  OPTIONS=$(whiptail --title "Edify SMILE Raspberry Pi Installation Kit" --checklist  "Select the script to run" 24 130 16 \
   "basic_setup.sh" "Install common utilities and programs needed, e.g. node, python, etc" OFF \
   "smile_setup.sh" "Install and implement Smile, including scripts to autostart services" OFF \
   "kiwix_wikipedia_setup.sh" "Install wikipedia" OFF \

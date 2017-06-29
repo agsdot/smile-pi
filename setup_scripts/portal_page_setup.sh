@@ -9,7 +9,7 @@ echo "install build tools one will need"
 
 echo "install jake globally from npm"
 
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g jake
+sudo npm install -g jake
 
 echo "make backups"
 echo "in /etc/nginx/"
@@ -47,7 +47,7 @@ sudo sed -i 's@breadcrumb-->@breadcrumb '"$GIT_HASH"' -->@' ~/smile-plug-portal-
 
 #jake build
 cd ~/smile-plug-portal-web/
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/jake build
+ jake build
 
 cd ~/smile-plug-portal-web/target/
 
