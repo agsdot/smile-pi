@@ -77,7 +77,7 @@ cd ~/smile_v2/backend/
 # version of hiredis can be changed in package.json
 sudo sed -i 's@0.1.17@0.5.0@' package.json
 
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install
+sudo npm install
 
 echo "npm packages put in"
 
@@ -92,8 +92,8 @@ sudo chmod +755 $HOME/smile_v2/backend/main.js
 
 cd ~/smile_v2/backend
 
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install -g underscore
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm update
+sudo npm install -g underscore
+sudo npm update
 
 ###
 
