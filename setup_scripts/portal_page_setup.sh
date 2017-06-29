@@ -9,7 +9,7 @@ echo "install build tools one will need"
 
 echo "install jake globally from npm"
 
-sudo npm install -g jake
+sudo /usr/bin/npm install -g jake
 
 echo "make backups"
 echo "in /etc/nginx/"
@@ -55,10 +55,15 @@ echo "put in place new smile plug portal files, html js assets"
 sudo rm -rf /usr/share/nginx/html/assets/
 sudo rm -rf /usr/share/nginx/html/js/
 sudo rm -rf /usr/share/nginx/html/index.html
+sudo rm -rf /usr/share/nginx/html/404.html
+sudo rm -rf /usr/share/nginx/html/50x.html
+
 
 sudo \cp -r ~/smile-plug-portal-web/target/assets/ /usr/share/nginx/html/assets/
 sudo \cp -r ~/smile-plug-portal-web/target/js/ /usr/share/nginx/html/js/
 sudo \cp -r ~/smile-plug-portal-web/target/index.html /usr/share/nginx/html/index.html
+sudo \cp ~/vagrant-archbox/setup_files/404.html /usr/share/nginx/html/404.html
+sudo \cp ~/vagrant-archbox/setup_files/50x.html /usr/share/nginx/html/50x.html
 
 echo "install and configure php tools needed for the shutdown / reboot script"
 echo "nginx php configurations and c installation"
