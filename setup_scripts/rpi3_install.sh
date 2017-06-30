@@ -25,6 +25,8 @@ else
   "smile_setup.sh" "Install and implement Smile, including scripts to autostart services" OFF \
   "kiwix_wikipedia_setup.sh" "Install wikipedia" OFF \
   "kalite_setup.sh" "Install khan academy lite" OFF \
+  "bible_texts_setup.sh" "Install Bibles (ASV, WEB and Childrens)" OFF \
+  "world_map_setup.sh" "Install Interactive World Map" OFF \
   "ck12_setup.sh" "Install CK12 textbooks" OFF \
   "app_programming_setup.sh" "Install code-monster and snap" OFF \
   "soe_setup.sh" "Install Seeds of Empowerment children books" OFF \

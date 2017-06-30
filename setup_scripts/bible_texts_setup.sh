@@ -1,31 +1,33 @@
 #!/usr/bin/env bash
 
-sudo rm -rf  /usr/share/nginx/html/smile-bible-for-children
+sudo rm -rf /usr/share/nginx/html/bible_for_children
+sudo rm -rf /usr/share/nginx/html/bible_web
+sudo rm -rf /usr/share/nginx/html/bible_asv
 
 cd
 
-echo "download smile-bible-for-children"
-git clone https://github.com/canuk/smile-bible-for-children
+echo "download bible_for_children"
+git clone https://github.com/canuk/bible_for_children
 
-echo "download smile-web-bible"
-git clone https://github.com/canuk/smile-web-bible
+echo "download bible_web"
+git clone https://github.com/canuk/bible_web
 
-echo "download smile-web-bible"
-git clone https://github.com/canuk/smile-bible-asv
+echo "download bible_asv"
+git clone https://github.com/canuk/bible_asv
 
 # echo "download code_monster"
 # git clone https://github.com/glinden/code-monster-from-crunchzilla code_monster
 #
 # echo "move snap and code_monster to nginx"
 
-echo "move smile-bible-for-children to nginx"
-sudo mv smile-bible-for-children /usr/share/nginx/html/
+echo "move bible_for_children to nginx"
+sudo mv bible_for_children /usr/share/nginx/html/
 
-echo "move smile-web-bible to nginx"
-sudo mv smile-web-bible /usr/share/nginx/html/
+echo "move bible_web to nginx"
+sudo mv bible_web /usr/share/nginx/html/
 
-echo "move smile-bible-asv to nginx"
-sudo mv smile-bible-asv /usr/share/nginx/html/
+echo "move bible_asv to nginx"
+sudo mv bible_asv /usr/share/nginx/html/
 
 cd; cd -
 cd ~/vagrant-archbox
