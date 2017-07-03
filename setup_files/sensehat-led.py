@@ -23,16 +23,16 @@ def sigterm_handler(_signo, _stack_frame):
 signal.signal(signal.SIGTERM, sigterm_handler)
 
 if __name__ == "__main__":
-  
+
   sense = SenseHat()
-  
+
   # set up the colours (white, green, red, empty)
-  
+
   w = [150, 150, 150]
   g = [0, 255, 0]
   r = [255, 0, 0]
   e = [0, 0, 0]
-  
+
   smile = [
   e,e,e,e,e,e,e,e,
   e,g,g,e,e,g,g,e,
@@ -40,10 +40,10 @@ if __name__ == "__main__":
   e,e,e,e,e,e,e,e,
   e,e,e,e,e,e,e,e,
   g,e,e,e,e,e,e,g,
-  g,g,g,g,g,g,g,g,
-  e,e,e,e,e,e,e,e
+  e,g,e,e,e,e,g,e
+  e,e,g,g,g,g,e,e
   ]
-  
+
   sad = [
   e,e,e,e,e,e,e,e,
   e,r,r,e,e,r,r,e,
@@ -54,7 +54,7 @@ if __name__ == "__main__":
   e,r,e,e,e,e,r,e,
   r,e,e,e,e,e,e,r
   ]
-  
+
   face1 = [
   e,e,e,e,e,e,e,e,
   e,g,w,e,e,g,g,e,
@@ -65,7 +65,7 @@ if __name__ == "__main__":
   e,e,g,g,g,e,e,e,
   e,e,e,e,e,e,e,e
   ]
-  
+
   face2 = [
   e,e,e,e,e,e,e,e,
   e,g,g,e,e,g,w,e,
@@ -76,7 +76,7 @@ if __name__ == "__main__":
   e,g,g,g,g,g,g,e,
   e,e,e,e,e,e,e,e
   ]
-  
+
   face3 = [
   e,e,e,e,e,e,e,e,
   e,g,g,e,e,w,g,e,
@@ -87,7 +87,7 @@ if __name__ == "__main__":
   e,g,g,g,g,g,g,e,
   e,e,e,e,e,e,e,e
   ]
-  
+
   face4 = [
   e,e,e,e,e,e,e,e,
   e,w,g,e,e,g,g,e,
@@ -98,20 +98,20 @@ if __name__ == "__main__":
   e,g,g,g,g,g,g,e,
   e,e,e,e,e,e,e,e
   ]
-  
+
   sense.set_pixels(smile)
-'''  
+
   while True:
-  
+
     x,y,z = sense.get_accelerometer_raw().values()
-  
+
     x = round(x, 0)
     y = round(y, 0)
-  
+
     x_shake = abs(x)
     y_shake = abs(y)
     z_shake = abs(z)
-  
+
     if x_shake > 1.5 or y_shake > 1.5 or z_shake > 1.5:
         for i in range(3):
           sense.set_pixels(face1)
@@ -134,4 +134,3 @@ if __name__ == "__main__":
         sense.set_rotation(0)
       else:
         sense.set_pixels(smile)
-'''

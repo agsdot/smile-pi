@@ -65,7 +65,7 @@ sudo \cp -r ~/kiwix/kiwix-0.9+wikipedia_en_for-schools_2013-01/data/ /usr/share/
 #then use this command to start the server:
 #sudo /usr/share/kiwix/kiwix-serve --port=8001 --library /usr/share/kiwix/data/library/wikipedia_en_for_schools_opt_2013.zim.xml
 
-cd ~/vagrant-archbox/setup_files/
+cd ~/smile-pi/setup_files/
 #http://uranio-235.github.io/blog/2016/07/31/kiwix-como-servicio/
 sudo cp -rf kiwix.service /usr/lib/systemd/system/kiwix.service
 
@@ -74,4 +74,4 @@ sudo systemctl enable kiwix
 sudo systemctl start kiwix
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi

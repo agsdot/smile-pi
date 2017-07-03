@@ -81,7 +81,7 @@ sudo npm install
 
 echo "npm packages put in"
 
-cd ~/vagrant-archbox/setup_files/
+cd ~/smile-pi/setup_files/
 sudo cp redis.service /usr/lib/systemd/system/redis.service
 echo "redis.service accounted for"
 
@@ -113,10 +113,10 @@ echo "systemctl for smile_backend"
 sudo systemctl enable smile_backend
 sudo systemctl start smile_backend
 
-#cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+#cp ~/smile-pi/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
 cd ~/smile_v2/backend/assets/couchdb/
 chmod +x couch_setup.sh
 sh couch_setup.sh
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi

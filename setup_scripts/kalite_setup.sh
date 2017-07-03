@@ -47,12 +47,12 @@ echo "DO_NOT_RELOAD_CONTENT_CACHE_AT_STARTUP = False" >> ~/.kalite/settings.py
 /usr/bin/kalite manage setup --username=kalitedbadmin --password=kalitedbadmin123 --noinput
 
 cd ~
-rm -rf ~/vagrant-archbox
-git clone https://github.com/canuk/vagrant-archbox
+rm -rf ~/smile-pi
+git clone https://github.com/canuk/smile-pi
 
-# sudo cp ~/vagrant-archbox/setup_files/kalite.service /usr/lib/systemd/system/
+# sudo cp ~/smile-pi/setup_files/kalite.service /usr/lib/systemd/system/
 # sudo systemctl enable kalite
 # sudo systemctl start kalite
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi

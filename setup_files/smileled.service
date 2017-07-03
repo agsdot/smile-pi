@@ -3,8 +3,8 @@ Description=LED display Green Smile
 After=network.target
 [Service]
 Type=simple
-ExecStart=/usr/bin/python.7 /home/pi/vagrant-archbox/setup_files/sensehat-led.py
-ExecStop=/usr/bin/python.7 /home/pi/vagrant-archbox/setup_files/sensehat-exit.py
+ExecStart=/usr/bin/python /home/pi/smile-pi/setup_files/sensehat-led.py
+ExecStop=/usr/bin/python /home/pi/smile-pi/setup_files/sensehat-exit.py
 RemainAfterExit=yes
 Restart=always
 RestartSec=30

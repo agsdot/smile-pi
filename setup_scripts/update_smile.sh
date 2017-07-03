@@ -29,10 +29,10 @@ sudo systemctl restart smile_backend
 echo "restart nginx"
 sudo systemctl restart nginx
 
-#cp ~/vagrant-archbox/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
+#cp ~/smile-pi/setup_files/couch_setup.sh ~/smile_v2/backend/assets/couchdb/couch_setup.sh
 cd ~/smile_v2/backend/assets/couchdb/
 chmod +x couch_setup.sh
 sh couch_setup.sh
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi

@@ -6,8 +6,8 @@ if [ -f "/usr/lib/systemd/system/create_ap.service" ]; then
   echo "create_ap service and Wifi network already configured"
   echo "re-download a fresh create_ap.service template and reconfigure"
   cd ~
-  rm -rf ~/vagrant-archbox
-  git clone https://github.com/canuk/vagrant-archbox
+  rm -rf ~/smile-pi
+  git clone https://github.com/canuk/smile-pi
 fi
 
 if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then
@@ -62,12 +62,12 @@ fi
 
 if [ ! -f ~/.gitconfig ]; then
   echo "setup ~/.gitconfig"
-  cp ~/vagrant-archbox/setup_files/.gitconfig ~/.gitconfig
+  cp ~/smile-pi/setup_files/.gitconfig ~/.gitconfig
 fi
 
 if [ ! -f ~/.bash_aliases ]; then
   echo "setup ~/.bash_aliases"
-  cp ~/vagrant-archbox/setup_files/.bash_aliases ~/.bash_aliases
+  cp ~/smile-pi/setup_files/.bash_aliases ~/.bash_aliases
 fi
 source ~/.bash_aliases
 
@@ -96,7 +96,7 @@ echo "setup create_ap"
 #note to self, Raspbian Jesse Lite already uses systemd
 LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
 
-cd ~/vagrant-archbox/setup_files/
+cd ~/smile-pi/setup_files/
 sudo rm -rf /usr/lib/systemd/system/create_ap.service
 sudo cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service
 sudo sed -i 's@ SMILE @ SMILE_'"$LAST_FOUR_MAC_ADDRESS"' @' /usr/lib/systemd/system/create_ap.service
@@ -123,7 +123,7 @@ sudo sed -i 's@/vagrant@'"$HOME"/smile_v2/frontend/src'@' /etc/nginx/nginx.conf
 sudo sed -i 's@/couchdb/(.*)      /$1  break;@/couchdb/(.*)      /smile/$1  break;@' /etc/nginx/nginx.conf
 sudo sed -i 's@/couchdb           /    break;@/couchdb           /smile    break;@' /etc/nginx/nginx.conf
 
-cd ~/vagrant-archbox/setup_files/
+cd ~/smile-pi/setup_files/
 sudo cp -rf etc_hosts /etc/hosts
 echo "hosts file overwritten"
 
@@ -136,4 +136,4 @@ sudo systemctl stop nginx
 sudo systemctl start nginx
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi

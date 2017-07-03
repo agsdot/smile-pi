@@ -17,4 +17,4 @@ sudo mv snap /usr/share/nginx/html/
 sudo mv code_monster /usr/share/nginx/html/
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi

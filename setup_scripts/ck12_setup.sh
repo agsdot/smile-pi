@@ -60,7 +60,7 @@ git clone https://github.com/canuk/bookshelf_maker
 cd ~/ck12/bookshelf_maker/
 
 sudo sed -i 's@bookshelf_title = "PDF Bookshelf"@bookshelf_title = "CK-12 Bookshelf"@' make_bookshelf.rb
-cp ~/vagrant-archbox/setup_files/ck12.png ~/ck12/bookshelf_maker/
+cp ~/smile-pi/setup_files/ck12.png ~/ck12/bookshelf_maker/
 
 mkdir -p ~/ck12/bookshelf_maker/books
 mkdir -p ~/ck12/bookshelf_maker/covers
@@ -84,7 +84,7 @@ sudo mv ck12 /usr/share/nginx/html/
 echo "done"
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi
 
 ##################################################################################################################
 #scatch stuff

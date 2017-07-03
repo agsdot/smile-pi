@@ -37,4 +37,4 @@ echo "restart nginx"
 sudo systemctl restart nginx
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi

@@ -30,4 +30,4 @@ echo "move bible_asv to nginx"
 sudo mv bible_asv /usr/share/nginx/html/
 
 cd; cd -
-cd ~/vagrant-archbox
+cd ~/smile-pi
