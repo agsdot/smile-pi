@@ -1,0 +1,5 @@
+title: "Turtle Academy",
+id: "turtleacademy",
+launch: "Learn Programming",
+image: "turtle-academy.png",
+description: "The easy way to learn programming! Turtle Academy makes it surprisingly easy to start creating amazing shapes using the LOGO language."

@@ -1,0 +1,5 @@
+title: "Bible",
+id: "bible",
+launch: "Read the Bible",
+image: "holy-bible.png",
+description: "The Revised Version, Standard American Edition of the Bible, more commonly known as the American Standard Version, is a version of the Bible that was first released in 1900."

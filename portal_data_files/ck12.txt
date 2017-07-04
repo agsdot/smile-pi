@@ -1,0 +1,5 @@
+title: "CK12",
+id: "ck12",
+launch: "See Textbooks",
+image: "ck12.png",
+description: "High quality and curated Textbooks collection on STEM (Science, Technology, Engineering and Math) from ck12.org. PDF format."

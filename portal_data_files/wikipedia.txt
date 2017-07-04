@@ -1,0 +1,5 @@
+title: "Wikipedia",
+id: "wikipedia",
+launch: "Find Information",
+image: "wikipedia.png",
+description: "Wikipedia is the world's largest collaborative encyclopedia. This selection of articles for schools is searchable and contains 6000 articles, 26 million words and 50,000 images!"

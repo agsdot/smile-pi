@@ -40,7 +40,7 @@ if __name__ == "__main__":
   e,e,e,e,e,e,e,e,
   e,e,e,e,e,e,e,e,
   g,e,e,e,e,e,e,g,
-  e,g,e,e,e,e,g,e
+  e,g,e,e,e,e,g,e,
   e,e,g,g,g,g,e,e
   ]
 

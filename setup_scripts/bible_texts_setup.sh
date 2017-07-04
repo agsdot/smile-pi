@@ -22,12 +22,18 @@ git clone https://github.com/canuk/bible_asv
 
 echo "move bible_for_children to nginx"
 sudo mv bible_for_children /usr/share/nginx/html/
+sudo cp ~/smile-pi/portal_data_files/bible_for_children.txt /usr/share/nginx/html/bible_for_children/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/bible_for_children.png /usr/share/nginx/html/bible_for_children/
 
 echo "move bible_web to nginx"
 sudo mv bible_web /usr/share/nginx/html/
+sudo cp ~/smile-pi/portal_data_files/bible_web.txt /usr/share/nginx/html/bible_web/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/bible_web.png /usr/share/nginx/html/bible_web/
 
 echo "move bible_asv to nginx"
 sudo mv bible_asv /usr/share/nginx/html/
+sudo cp ~/smile-pi/portal_data_files/bible_asv.txt /usr/share/nginx/html/bible_web/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/bible_asv.png /usr/share/nginx/html/bible_asv/
 
 cd; cd -
 cd ~/smile-pi

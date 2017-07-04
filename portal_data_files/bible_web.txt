@@ -1,0 +1,5 @@
+title: "World English Bible",
+id: "webbible",
+launch: "Read the Bible",
+image: "web-bible.png",
+description: "The World English Bible. The Holy Bible tells you what you need to know and believe to be saved from sin and evil and how to live a life that is truly worth living, no matter what your current circumstances may be."

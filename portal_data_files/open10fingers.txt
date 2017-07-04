@@ -1,0 +1,5 @@
+title: "Typing Practice",
+id: "typing",
+launch: "Practice Typing",
+image: "open10fingers-typing.png",
+description: "If you are on a laptop or desktop computer, use this program to practice your typing skills!"

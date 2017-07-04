@@ -18,9 +18,12 @@ git fetch --all
 git reset --hard origin/master
 
 echo "build smile plug portal"
+ruby ~/smile-pi/setup_files/build_portal.rb
+rm ~/smile-plug-portal-web/src/views/home.js
+cp ~/smile-pi/setup_files/home.js ~/smile-plug-portal-web/src/views/home.js
 
 cd ~/smile-plug-portal-web/
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/jake build
+sudo jake build
 
 cd ~/smile-plug-portal-web/target/
 

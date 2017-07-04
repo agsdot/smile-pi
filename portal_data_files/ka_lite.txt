@@ -1,0 +1,5 @@
+title: "Khan Academy"
+id: "khan"
+launch: "Learn Math"
+image: "khan_academy.png"
+description: "KA Lite allows for blended learning opportunities using the core Khan Academy maths exercises."

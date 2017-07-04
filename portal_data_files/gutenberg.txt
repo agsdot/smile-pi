@@ -1,0 +1,5 @@
+title: "Project Gutenberg",
+id: "gutenberg",
+launch: "Read Stories",
+image: "gutenberg.png",
+description: "Thousands of books in digital format (text) from Project Gutenberg. Organized by Bookshelves."

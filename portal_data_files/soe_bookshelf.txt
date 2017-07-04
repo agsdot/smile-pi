@@ -1,0 +1,5 @@
+title: "1001 Stories Project Bookshelf",
+id: "soebookshelf",
+launch: "Read Stories",
+image: "soe-bookshelf.png",
+description: "Children love to tell stories. However, in many places in the world, their creative voices are rarely heard or cultivated. The 1001 Stories Program conducts storytelling workshops that build on children’s natural potential to become original storytellers."
