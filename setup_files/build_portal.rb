@@ -18,7 +18,7 @@ push_text = ""
 navigate_text = ""
 
 web_root = '/usr/share/nginx/html'
-directories = Dir.entries(web_root).select { |file| File.directory? File.join(web_root, file) and !(file =='.' || file == '..')}
+directories = Dir.entries(web_root).select { |file| File.directory? File.join(web_root, file) and !(file =='.' || file == '..' || file == 'js' || file == 'assets' || file == 'css')}
 
 directories.each do |folder|
   puts "[SCAN] looking for portal_data.txt in #{folder}..."

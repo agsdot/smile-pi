@@ -79,6 +79,8 @@ mv bookshelf_maker soe-bookshelf
 sudo rm -rf /usr/share/nginx/html/soe-bookshelf
 
 sudo mv soe-bookshelf /usr/share/nginx/html/
+sudo cp ~/smile-pi/portal_data_files/soe_bookshelf.txt /usr/share/nginx/html/soe-bookshelf/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/soe-bookshelf.png /usr/share/nginx/html/soe-bookshelf/
 
 echo "done"
 

@@ -1,0 +1,5 @@
+title: "Edify Music"
+id: "paint"
+launch: "Create Music"
+image: "edify_music.png"
+description: "Learn about music notation and create your own music!"
