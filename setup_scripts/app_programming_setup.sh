@@ -2,6 +2,8 @@
 
 sudo rm -rf  /usr/share/nginx/html/snap
 sudo rm -rf  /usr/share/nginx/html/code_monster
+sudo rm -rf  /usr/share/nginx/html/blockly-games-en
+sudo rm -rf  /usr/share/nginx/html/jslogo
 
 cd
 
@@ -18,11 +20,11 @@ sudo cp ~/smile-pi/portal_data_files/code_monster.txt /usr/share/nginx/html/code
 sudo cp ~/smile-pi/portal_data_files/code-monster.png /usr/share/nginx/html/code_monster/
 
 echo "download blockly games and add to nginx"
-git clone https://github.com/blockly-games-offline/blockly-games-en.zip blockly-games-en
-cd blockly-games-en
+git clone https://github.com/canuk/blockly-games-offline.git blockly-games-offline
+cd blockly-games-offline
 unzip blockly-games-en.zip
-sudo mv blockly-games-en /usr/share/nginx/html/
-sudo cp ~/smile-pi/portal_data_files/blockly-games.txt /usr/share/nginx/html/blockly-games-en/portal_data.txt
+sudo mv blockly-games /usr/share/nginx/html/blockly-games-en
+sudo cp ~/smile-pi/portal_data_files/blockly_games.txt /usr/share/nginx/html/blockly-games-en/portal_data.txt
 sudo cp ~/smile-pi/portal_data_files/blockly-games-logo.png /usr/share/nginx/html/blockly-games-en/
 
 echo "download jslogo and add to nginx"
