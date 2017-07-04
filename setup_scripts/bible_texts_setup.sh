@@ -28,7 +28,7 @@ sudo cp ~/smile-pi/portal_data_files/bible-for-children.png /usr/share/nginx/htm
 echo "move bible_web to nginx"
 sudo mv bible_web /usr/share/nginx/html/
 sudo cp ~/smile-pi/portal_data_files/bible_web.txt /usr/share/nginx/html/bible_web/portal_data.txt
-sudo cp ~/smile-pi/portal_data_files/holy-bible.png /usr/share/nginx/html/bible_web/
+sudo cp ~/smile-pi/portal_data_files/web-bible.png /usr/share/nginx/html/bible_web/
 
 echo "move bible_asv to nginx"
 sudo mv bible_asv /usr/share/nginx/html/

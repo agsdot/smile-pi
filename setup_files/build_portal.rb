@@ -27,7 +27,8 @@ directories.each do |folder|
     File.open( web_root+'/'+folder+'/portal_data.txt' ).each do |line|
 
           @title = line.match(/^title:\s*\"(.*)\"$/)[1] if line.match(/^title:\s*\"(.*)\"$/)
-          @id = line.match(/^id:\s*\"(.*)\"$$/)[1] if line.match(/^id:\s*\"(.*)\"$$/)
+          @id = line.match(/^id:\s*\"(.*)\"$$/)[1] if line.match(/^id:\s*\"(.*)\"$/)
+          @launch = line.match(/^launch:\s*\"(.*)\"$$/)[1] if line.match(/^launch:\s*\"(.*)\"$/)
           @image = line.match(/^image:\s*\"(.*)\"$/)[1] if line.match(/^image:\s*\"(.*)\"$/)
           @description = line.match(/^description:\s*\"(.*)\"$/)[1] if line.match(/^description:\s*\"(.*)\"$/)
           @dirname = folder
@@ -35,7 +36,7 @@ directories.each do |folder|
     end
     if @title != "" and @id != "" and @image != "" and @description != "" and @dirname != ""
       puts "[SUCCESS] Added #{@title} to Portal"
-      push_text += "this.apps.push({\n  title: \"#{@title}\",\n  id: \"#{@title}\",\n  launch: \"#{@title}\",\n  image: \"#{web_root}/#{@dirname}/#{@image}\",\n  description: \"#{@description}\"\n});\n"
+      push_text += "this.apps.push({\n  title: \"#{@title}\",\n  id: \"#{@id}\",\n  launch: \"#{@launch}\",\n  image: \"/#{@dirname}/#{@image}\",\n  description: \"#{@description}\"\n});\n"
       navigate_text +=  "else if (id == \"#{@id}\") {\n  logger.info(\"navigating to #{@id}\");\n  window.open(window.location.origin + \"/#{@dirname}/\");\n}\n"
     else
       puts "[FAILURE] Unable to add #{folder} to portal...bad portal_data.txt"

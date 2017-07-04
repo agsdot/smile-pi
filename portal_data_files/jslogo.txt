@@ -1,0 +1,5 @@
+title: "Logo Interpreter"
+id: "jslogo"
+launch: "Learn Logo"
+image: "jslogo.png"
+description: "Logo is an educational programming language, designed in 1967 by Wally Feurzeig, Seymour Papert and Cynthia Solomon."

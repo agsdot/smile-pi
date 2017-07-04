@@ -1,0 +1,5 @@
+title: "World Map"
+id: "world_map"
+launch: "Explore the Globe"
+image: "world_map.png"
+description: "Enjoy exploring the world beyond the horizon. This searchable, colorful world map provides a way to explore the world from your device!"
