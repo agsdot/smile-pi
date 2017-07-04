@@ -24,7 +24,7 @@ git clone https://github.com/canuk/smile-pi
 echo "prepare the portal page"
 
 cd ~
-rm -rf smile-plug-portal-web
+sudo rm -rf smile-plug-portal-web
 echo "clone the repo"
 git clone https://bitbucket.org/gseit/smile-plug-portal-web
 
@@ -45,9 +45,10 @@ GIT_HASH="$(git rev-parse HEAD)"
 sudo sed -i 's@Administer@Administer Smile Plug (SMILE_'"$LAST_FOUR_MAC_ADDRESS"')@' ~/smile-plug-portal-web/src/templates/admin.html
 sudo sed -i 's@breadcrumb-->@breadcrumb '"$GIT_HASH"' -->@' ~/smile-plug-portal-web/src/templates/admin.html
 
+rm -f ~/smile-pi/home.js
 ruby ~/smile-pi/setup_files/build_portal.rb
 rm ~/smile-plug-portal-web/src/views/home.js
-cp ~/smile-pi/setup_files/home.js ~/smile-plug-portal-web/src/views/home.js
+cp ~/smile-pi/home.js ~/smile-plug-portal-web/src/views/home.js
 
 #jake build
 cd ~/smile-plug-portal-web/
