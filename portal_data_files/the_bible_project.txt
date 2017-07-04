@@ -1,5 +1,5 @@
-title: "the BIBLE Project",
-id: "bibleproject",
-launch: "Watch Videos",
-image: "the_bible_project.png",
+title: "the BIBLE Project"
+id: "bibleproject"
+launch: "Watch Videos"
+image: "the_bible_project.png"
 description: "The Bible Project is a Portland based non-profit that utilizes short-form, fully animated videos to make the biblical story accessible to everyone, everywhere."

@@ -1,5 +1,5 @@
-title: "Edify Draw and Paint",
-id: "paint",
-launch: "Create Drawings",
-image: "edify-draw-and-paint.png",
+title: "Edify Draw and Paint"
+id: "paint"
+launch: "Create Drawings"
+image: "edify-draw-and-paint.png"
 description: "Create your own drawings and paintings!"

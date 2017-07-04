@@ -1,5 +1,5 @@
-title: "Bible for Children",
-id: "bibleforchildren",
-launch: "Explore the Bible",
-image: "bible-for-children.png",
+title: "Bible for Children"
+id: "bibleforchildren"
+launch: "Explore the Bible"
+image: "bible-for-children.png"
 description: "Colorful stories from the Bible. Check back daily for a new inspiring devotional."

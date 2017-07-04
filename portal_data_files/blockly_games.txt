@@ -1,5 +1,5 @@
-title: "Blockly Games",
-id: "blockly-games",
-launch: "Learn Programming",
-image: "blockly-games-logo.png",
+title: "Blockly Games"
+id: "blockly-games"
+launch: "Learn Programming"
+image: "blockly-games-logo.png"
 description: "Blockly Games is a series of educational games that teach programming. It is designed for children who have not had prior experience with computer programming. By the end of these games, players are ready to use conventional text-based languages."

@@ -1,5 +1,5 @@
-title: "SMILE",
-id: "smile",
-launch: "Make a Question",
-image: "smile_grey.png",
+title: "SMILE"
+id: "smile"
+launch: "Make a Question"
+image: "smile_grey.png"
 description: "SMILE flips a traditional classroom into a highly interactive learning environment by engaging learners in critical reasoning and problem solving while enabling them to generate, share, and evaluate multimedia-rich inquiries."

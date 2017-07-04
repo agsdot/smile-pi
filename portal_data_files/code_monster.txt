@@ -1,5 +1,5 @@
-title: "Code Monster",
-id: "codemonster",
-launch: "Learn Javascript",
-image: "codemonster-logo.png",
+title: "Code Monster"
+id: "codemonster"
+launch: "Learn Javascript"
+image: "codemonster-logo.png"
 description: "Code Monster gets kids excited about programming. It is a combination of a game and tutorial where kids experiment with learning to code."

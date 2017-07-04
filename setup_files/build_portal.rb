@@ -1,3 +1,19 @@
+###############################
+# build_portal.rb
+# by Reuben Thiessen (reubenthiessen@gmail.com)
+# v1.0
+# This script will look in the web root folder for a specific file called "portal_data.txt"
+# this file should be formatted as follows (example, put everything in quotes and not commented out):
+#######portal_data.txt###example######
+# title: "Wikipedia",
+# id: "wikipedia",
+# launch: "Find Information",
+# image: "wikipedia.png",
+# description: "Wikipedia is the world's largest collaborative encyclopedia."
+###############################
+# The script will pull out the data in quotes and create a home.js file that you can use with the smile-plug-portal-web
+###############################
+
 push_text = ""
 navigate_text = ""
 
@@ -5,21 +21,26 @@ web_root = '/usr/share/nginx/html'
 directories = Dir.entries(web_root).select { |file| File.directory? File.join(web_root, file) and !(file =='.' || file == '..')}
 
 directories.each do |folder|
+  puts "[SCAN] looking for portal_data.txt in #{folder}..."
   if File.file?(web_root+'/'+folder+'/portal_data.txt')
-    puts "found portal_data in #{File.basename(Dir.getwd)}"
-    File.open( web_root+'/'+folder+'portal_data.txt' ).each do |line|
+    puts "[INFO] Found portal_data in #{folder}"
+    File.open( web_root+'/'+folder+'/portal_data.txt' ).each do |line|
 
-          @title = line.match(/^title:\s*\"(.*)\"$/)[1] if line[/title/]
-          @id = line.match(/^id:\s*\"(.*)\"$$/)[1] if line[/id/]
-          @image = line.match(/^image:\s*\"(.*)\"$/)[1] if line[/image/]
-          @description = line.match(/^description:\s*\"(.*)\"$/)[1] if line[/description/]
-          @dirname = File.basename(Dir.getwd)
+          @title = line.match(/^title:\s*\"(.*)\"$/)[1] if line.match(/^title:\s*\"(.*)\"$/)
+          @id = line.match(/^id:\s*\"(.*)\"$$/)[1] if line.match(/^id:\s*\"(.*)\"$$/)
+          @image = line.match(/^image:\s*\"(.*)\"$/)[1] if line.match(/^image:\s*\"(.*)\"$/)
+          @description = line.match(/^description:\s*\"(.*)\"$/)[1] if line.match(/^description:\s*\"(.*)\"$/)
+          @dirname = folder
 
     end
-
-    push_text += "this.apps.push({\n  title: \"#{@title}\",\n  id: \"#{@title}\",\n  launch: \"#{@title}\",\n  image: \"#{web_root}/#{@dirname}/#{@image}\",\n  description: \"#{@description}\"\n});\n"
-    navigate_text +=  "else if (id == \"#{@id}\") {\n  logger.info(\"navigating to #{@id}\");\n  window.open(window.location.origin + \"/#{@dirname}/\");\n}\n"
-
+    if @title != "" and @id != "" and @image != "" and @description != "" and @dirname != ""
+      puts "[SUCCESS] Added #{@title} to Portal"
+      push_text += "this.apps.push({\n  title: \"#{@title}\",\n  id: \"#{@title}\",\n  launch: \"#{@title}\",\n  image: \"#{web_root}/#{@dirname}/#{@image}\",\n  description: \"#{@description}\"\n});\n"
+      navigate_text +=  "else if (id == \"#{@id}\") {\n  logger.info(\"navigating to #{@id}\");\n  window.open(window.location.origin + \"/#{@dirname}/\");\n}\n"
+    else
+      puts "[FAILURE] Unable to add #{folder} to portal...bad portal_data.txt"
+    end
+    @title, @id, @image, @description, @dirname = ""
   end
 end
 

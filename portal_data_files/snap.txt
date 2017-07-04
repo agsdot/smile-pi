@@ -1,5 +1,5 @@
-title: "Snap!",
-id: "snap",
-launch: "Learn Programming",
-image: "snap-logo.png",
+title: "Snap!"
+id: "snap"
+launch: "Learn Programming"
+image: "snap-byob.png"
 description: "Snap! is a visual, drag-and-drop programming language. It is an extended reimplementation of Scratch (a project of the Lifelong Kindergarten Group at the MIT Media Lab).  Capabilities like first class lists, first class procedures, and continuations make it suitable for a serious introduction to computer science."

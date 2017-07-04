@@ -1,5 +1,5 @@
-title: "PhET",
-id: "phet",
-launch: "Learn Science",
-image: "PhET-interactive-simulations.png",
+title: "PhET"
+id: "phet"
+launch: "Learn Science"
+image: "PhET-interactive-simulations.png"
 description: "Free educational simulations covering a diverse selection of topics designed by the University of Colorado"
