@@ -32,7 +32,7 @@ sudo cp ~/smile-pi/portal_data_files/holy-bible.png /usr/share/nginx/html/bible_
 
 echo "move bible_asv to nginx"
 sudo mv bible_asv /usr/share/nginx/html/
-sudo cp ~/smile-pi/portal_data_files/bible_asv.txt /usr/share/nginx/html/bible_web/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/bible_asv.txt /usr/share/nginx/html/bible_asv/portal_data.txt
 sudo cp ~/smile-pi/portal_data_files/holy-bible.png /usr/share/nginx/html/bible_asv/
 
 cd; cd -

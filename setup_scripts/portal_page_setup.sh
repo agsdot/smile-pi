@@ -75,12 +75,8 @@ echo "nginx php configurations and c installation"
 sudo apt-get --yes --force-yes install php5-fpm
 sudo systemctl enable php5-fpm
 
-# if /vagrant directory exists, whether this script is running on vagrant or rpi3
-if [ -d /vagrant ]; then
-  sudo \cp ~/smile-pi/setup_files/nginx.conf.vagrant /etc/nginx/nginx.conf
-else
-  sudo \cp ~/smile-pi/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
-fi
+sudo \cp ~/smile-pi/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
+sudo \cp ~/smile-pi/setup_files/fastcgi-php.conf.rpi3 /etc/nginx/snippets/fastcgi-php.conf
 
 sudo systemctl stop nginx
 sudo systemctl stop php5-fpm

@@ -15,11 +15,11 @@ echo "prepare the portal page"
 
 cd ~/smile-plug-portal-web
 git fetch --all
-git reset --hard origin/master
+sudo git reset --hard origin/master
 
 echo "build smile plug portal"
 ruby ~/smile-pi/setup_files/build_portal.rb
-rm ~/smile-plug-portal-web/src/views/home.js
+rm -f ~/smile-plug-portal-web/src/views/home.js
 cp ~/smile-pi/setup_files/home.js ~/smile-plug-portal-web/src/views/home.js
 
 cd ~/smile-plug-portal-web/
