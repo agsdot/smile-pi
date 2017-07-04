@@ -26,10 +26,12 @@ else
   "kiwix_wikipedia_setup.sh" "Install wikipedia" OFF \
   "kalite_setup.sh" "Install khan academy lite" OFF \
   "bible_texts_setup.sh" "Install Bibles (ASV, WEB and Childrens)" OFF \
+  "bible_project_setup.sh" "Install the Bible Project Videos" OFF \
   "world_map_setup.sh" "Install Interactive World Map" OFF \
   "ck12_setup.sh" "Install CK12 textbooks" OFF \
   "app_programming_setup.sh" "Install code-monster and snap" OFF \
   "soe_setup.sh" "Install Seeds of Empowerment children books" OFF \
+  "music_setup.sh" "Install Edify Music" OFF \
   "portal_page_setup.sh" "Setup the smile plug portal page, configure nginx and links properly" OFF \
   "sensehat_setup.sh" "Setup if sensehat LED is attached, reboot required" OFF \
   "update_ap.sh" "Update the wireless access point name, e.g. SMILE_12AS" OFF \
