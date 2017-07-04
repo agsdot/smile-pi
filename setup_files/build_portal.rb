@@ -154,6 +154,6 @@ home_js += "app.showLoginModal();
     })
 })(app);\n"
 
-File.open("~/smile-pi/home.js", "w") do |f|
+File.open("/home/pi/smile-pi/home.js", "w") do |f|
   f.puts home_js
 end
