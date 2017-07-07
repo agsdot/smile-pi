@@ -16,7 +16,7 @@ fi
 ACTION=$1
 DEVBASE=$2
 DEVICE="/dev/${DEVBASE}"
-readonly storage_share="/usr/share/nginx/html/storage"
+readonly storage_share="/usr/share/nginx/html/usb"
 
 # See if this drive is already mounted, and if so where
 MOUNT_POINT=$(/bin/mount | /bin/grep ${DEVICE} | /usr/bin/awk '{ print $3 }')
@@ -65,7 +65,7 @@ do_mount()
     #Remove existing symlink
     rm ${storage_share}
     # Create symlink
-    ln -s "${MOUNT_POINT}" ${storage1_share}
+    ln -s "${MOUNT_POINT}" ${storage_share}
 }
 
 do_unmount()

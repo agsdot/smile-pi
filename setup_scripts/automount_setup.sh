@@ -35,4 +35,7 @@ sudo apt-get install nginx-extras
 sudo rm -rf /usr/share/nginx/html/.fancyindex
 sudo git clone https://github.com/luk1337/Directory-Theme.git /usr/share/nginx/html/.fancyindex
 
+sudo \cp /etc/nginx/nginx.conf /etc/nginx/nginx_old.conf
+sudo \cp ~/smile-pi/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
+
 sudo /etc/init.d/nginx restart
