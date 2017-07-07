@@ -18,12 +18,14 @@ echo "setup usbmount service"
 sudo cp /home/pi/smile-pi/setup_files/usbmount@.service /etc/systemd/system/usbmount@.service
 
 # https://serverfault.com/questions/766506/automount-usb-drives-with-systemd
+sudo rm -rf  /usr/local/bin/usb-mount.sh
 sudo cp /home/pi/smile-pi/setup_files/usb-mount.sh /usr/local/bin/usb-mount.sh
 sudo chmod +x /usr/local/bin/usb-mount.sh
 
+sudo rm -rf /etc/systemd/system/usb-mount@.service
 sudo cp /home/pi/smile-pi/setup_files/usb-mount@.service /etc/systemd/system/usb-mount@.service
 
-/etc/udev/rules.d/99-local.rules
+sudo rm -rf /etc/udev/rules.d/99-local.rules
 sudo cp /home/pi/smile-pi/setup_files/99-local.rules /etc/udev/rules.d/99-local.rules
 
 sudo udevadm control --reload-rules
@@ -31,6 +33,6 @@ sudo systemctl daemon-reload
 
 sudo apt-get install nginx-extras
 sudo rm -rf /usr/share/nginx/html/.fancyindex
-sudo git https://github.com/luk1337/Directory-Theme.git /usr/share/nginx/html/.fancyindex
+sudo git clone https://github.com/luk1337/Directory-Theme.git /usr/share/nginx/html/.fancyindex
 
 sudo /etc/init.d/nginx restart
