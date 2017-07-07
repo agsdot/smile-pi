@@ -68,7 +68,7 @@ cp ~/smile-pi/setup_files/navbar_usb.html ~/smile-plug-portal-web/src/templates/
 
 #jake build
 cd ~/smile-plug-portal-web/
- jake build
+sudo jake build
 
 cd ~/smile-plug-portal-web/target/
 
