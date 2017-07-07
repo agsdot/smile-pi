@@ -63,6 +63,14 @@ http {
         #    autoindex on;
         #}
 
+        location /usb {
+            fancyindex on;
+            fancyindex_exact_size off;
+            fancyindex_header "/.fancyindex/header.html";
+            fancyindex_footer "/.fancyindex/footer.html";
+            fancyindex_ignore "fancyindex"; #ignore this directory when showing list
+            fancyindex_css_href "/.fancyindex/style.css";
+        }
 
         location /smileService {
             rewrite     /smileService/(.*)      /$1  break;

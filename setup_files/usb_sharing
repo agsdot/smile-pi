@@ -3,6 +3,7 @@
 readonly storage1_share="/usr/share/nginx/html/storage1"
 readonly storage2_share="/usr/share/nginx/html/storage2"
 
+
 function exec_at_mount()
 {
 	case ${1} in
@@ -18,7 +19,7 @@ function exec_at_mount()
 			# Create symlink
 			ln -s "${2}" ${storage2_share}
 		;;
-	esac	
+	esac
 	exit 0;
 }
 
@@ -33,7 +34,7 @@ function exec_at_unmount()
 			# Remove Link
 			rm ${storage2_share}
 		;;
-	esac	
+	esac
 	exit 0;
 }
 
