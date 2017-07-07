@@ -1,0 +1,13 @@
+[Unit]
+Description=devmon Service
+
+[Service]
+Type=simple
+User=www-data
+# Set DISPLAY for popup dialogs
+Environment=DISPLAY=:0
+EnvironmentFile=/etc/conf.d/devmon
+ExecStart=/usr/bin/devmon --exec-on-device /dev/sda1 "/etc/nginx/usb_sharing mount 1 %d" --exec-on-remove "/etc/nginx/usb_sharing unmount 1 %d" --exec-on-device /dev/sdb1 "/etc/nginx/usb_sharing mount 2 %d" --exec-on-remove "/etc/nginx/usb_sharing unmount 2 %d"
+
+[Install]
+WantedBy=multi-user.target

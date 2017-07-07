@@ -32,7 +32,7 @@ sudo dpkg -i ka-lite-raspberry-pi*.deb
 
 echo "move videos in ~/.kalite/content directory"
 mv ~/.kalite/content/ ~/.kalite/content_backup/
-mv ~/kalite_files/ka-lite-0.16-resized-videos ~/.kalite/content/
+mv ~/kalite_files/ka-lite-0.17-resized-videos ~/.kalite/content/
 cp -r ~/.kalite/content_backup/assessment ~/.kalite/content/
 
 echo "/usr/bin/kalite manage retrievecontentpack local en ~/kalite_files/en.zip"

@@ -1,0 +1,56 @@
+#!/bin/bash
+
+readonly storage1_share="/usr/share/nginx/html/storage1"
+readonly storage2_share="/usr/share/nginx/html/storage2"
+
+function exec_at_mount()
+{
+	case ${1} in
+		"1")
+			#Remove existing symlink
+			rm ${storage1_share}
+			# Create symlink
+			ln -s "${2}" ${storage1_share}
+		;;
+		"2")
+			#Remove existing symlink
+			rm ${storage2_share}
+			# Create symlink
+			ln -s "${2}" ${storage2_share}
+		;;
+	esac	
+	exit 0;
+}
+
+function exec_at_unmount()
+{
+	case ${1} in
+		"1")
+			# Remove Link
+			rm ${storage1_share}
+		;;
+		"2")
+			# Remove Link
+			rm ${storage2_share}
+		;;
+	esac	
+	exit 0;
+}
+
+# M A I N
+
+# The incoming parameters are
+# {1} mount/unmont
+# {2} device number
+# {3} mount point of the device
+
+mount_point=${3}
+device_num=${2}
+
+if [[ ${1} == "mount" ]]; then
+	exec_at_mount ${device_num} "$mount_point"
+fi
+
+if [[ ${1} == "unmount" ]]; then
+	exec_at_unmount ${device_num} "$mount_point"
+fi
