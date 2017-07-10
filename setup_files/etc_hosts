@@ -5,8 +5,8 @@
 #<ip-address>	<hostname.domain.org>	<hostname>
 127.0.0.1	localhost.localdomain	localhost
 ::1		localhost.localdomain	localhost
-192.168.12.1  edify.smile edify
-192.168.12.1	smile.dev	smile
-192.168.12.1	start.here	start
-192.168.12.1  raspberry.pi raspberrypi
+192.168.12.1  edify.smile   edify
+192.168.12.1	smile.dev	    smile
+192.168.12.1	start.here	  start
+192.168.12.1  raspberry.pi  raspberrypi
 # End of file
