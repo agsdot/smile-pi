@@ -1,0 +1,5 @@
+title: "African Storybooks"
+id: "african_storybook"
+launch: "Read Stories"
+image: "african_storybook.png"
+description: "A collection of illustrated children's stories from many African cultures."

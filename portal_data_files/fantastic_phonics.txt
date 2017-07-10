@@ -1,0 +1,5 @@
+title: "Fantastic Phonics"
+id: "fantastic_phonics"
+launch: "Learn and Practice Reading"
+image: "fantastic_phonics.png"
+description: "Fantastic Phonics is a complete 16 week intensive reading scheme for schools and families, with 60 printable stories, multimedia and video."

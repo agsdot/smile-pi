@@ -1,0 +1,5 @@
+title: "GCF Learn Free"
+id: "gcf_learn_free"
+launch: "Explore skills"
+image: "gcf_learn_free.png"
+description: "Hundreds of high-quality illustrated articles and videos focusing on technology, job training, reading, and math skills, produced by the Goodwill Community Foundation."

@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+#sudo rm -rf /usr/share/nginx/html/gutenberg
+
+cd
+
+echo "download gutenberg e-books"
+git clone https://github.com/canuk/gutenberg
+
+echo "move gutenberg to nginx"
+sudo mv gutenberg /usr/share/nginx/html/
+sudo cp ~/smile-pi/portal_data_files/gutenberg.txt /usr/share/nginx/html/gutenberg/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/gutenberg.png /usr/share/nginx/html/gutenberg/
+
+cd; cd -
+cd ~/smile-pi
+
+
+
+sudo cp ~/smile-pi/portal_data_files/childrens_books.txt /usr/share/nginx/html/childrens-books/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/childrens-books.png /usr/share/nginx/html/childrens-books/
+
+sudo cp ~/smile-pi/portal_data_files/turtle_academy.txt /usr/share/nginx/html/turtle-academy/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/turtle-academy.png /usr/share/nginx/html/turtle-academy/
+
+sudo cp ~/smile-pi/portal_data_files/open10fingers.txt /usr/share/nginx/html/open10fingers/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/open10fingers-typing.png /usr/share/nginx/html/open10fingers/
+
+sudo cp ~/smile-pi/portal_data_files/edify_draw_and_paint.txt /usr/share/nginx/html/paint/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/edify-draw-and-paint.png /usr/share/nginx/html/paint/
+
+sudo cp ~/smile-pi/portal_data_files/ck12.txt /usr/share/nginx/html/ck12/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/ck12.png /usr/share/nginx/html/ck12/
+
+#TODO
+sudo cp ~/smile-pi/portal_data_files/african_storybook.txt /usr/share/nginx/html/african_storybook/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/african_storybook.png /usr/share/nginx/html/african_storybook/
+
+sudo cp ~/smile-pi/portal_data_files/cat_and_dog_fun_books.txt /usr/share/nginx/html/cat_and_dog_fun_books/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/cat_and_dog_fun_books.png /usr/share/nginx/html/cat_and_dog_fun_books/
+
+sudo cp ~/smile-pi/portal_data_files/fantastic_phonics.txt /usr/share/nginx/html/fantastic_phonics/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/fantastic_phonics.png /usr/share/nginx/html/fantastic_phonics/
+
+sudo cp ~/smile-pi/portal_data_files/gcf_learn_free.txt /usr/share/nginx/html/gcf_learn_free/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/gcf_learn_free.png /usr/share/nginx/html/gcf_learn_free/
