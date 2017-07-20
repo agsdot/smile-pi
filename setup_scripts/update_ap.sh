@@ -4,6 +4,7 @@ echo "update SSID with LAST_FOUR_MAC_ADDRESS"
 
 LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
 
+echo "new SSID: $LAST_FOUR_MAC_ADDRESS"
 sudo sed -i 's/SMILE_F69F/SMILE_'"$LAST_FOUR_MAC_ADDRESS"'/' /usr/share/nginx/html/index.html
 
 cd ~/smile-pi/setup_files/
