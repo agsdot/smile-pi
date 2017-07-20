@@ -28,9 +28,9 @@ sudo sed -i 's@breadcrumb-->@breadcrumb '"$GIT_HASH"' -->@' ~/smile-plug-portal-
 echo "build smile plug portal"
 rm -f ~/smile-pi/home.js
 ruby ~/smile-pi/setup_files/build_portal.rb
-rm -f ~/smile-plug-portal-web/src/views/home.js
+sudo rm -f ~/smile-plug-portal-web/src/views/home.js
 cp ~/smile-pi/home.js ~/smile-plug-portal-web/src/views/home.js
-rm ~/smile-plug-portal-web/src/templates/navbar.html
+sudo rm ~/smile-plug-portal-web/src/templates/navbar.html
 cp ~/smile-pi/setup_files/navbar_usb.html ~/smile-plug-portal-web/src/templates/navbar.html
 
 rm ~/smile-plug-portal-web/src/templates/about.html

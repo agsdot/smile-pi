@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "update create_ap"
+echo "update SSID with LAST_FOUR_MAC_ADDRESS"
 
 LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
 

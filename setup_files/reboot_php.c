@@ -3,6 +3,6 @@
 
 int main() {
     setuid(0);
-    system("/usr/bin/reboot"); /* change this to the actual location of reboot*/
+    system("/sbin/reboot"); /* change this to the actual location of reboot*/
     return 0;
 }
