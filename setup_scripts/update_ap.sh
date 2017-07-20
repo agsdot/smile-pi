@@ -4,6 +4,8 @@ echo "update SSID with LAST_FOUR_MAC_ADDRESS"
 
 LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
 
+sudo sed -i 's@Administer@Administer Smile Plug (SMILE_'"$LAST_FOUR_MAC_ADDRESS"')@' /usr/share/nginx/html/index.html
+
 cd ~/smile-pi/setup_files/
 sudo rm -rf /usr/lib/systemd/system/create_ap.service
 sudo \cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service

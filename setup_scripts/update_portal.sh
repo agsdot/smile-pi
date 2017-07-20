@@ -26,14 +26,14 @@ sudo sed -i 's@Administer@Administer Smile Plug (SMILE_'"$LAST_FOUR_MAC_ADDRESS"
 sudo sed -i 's@breadcrumb-->@breadcrumb '"$GIT_HASH"' -->@' ~/smile-plug-portal-web/src/templates/admin.html
 
 echo "build smile plug portal"
-rm -f ~/smile-pi/home.js
+sudo rm -f ~/smile-pi/home.js
 ruby ~/smile-pi/setup_files/build_portal.rb
 sudo rm -f ~/smile-plug-portal-web/src/views/home.js
 cp ~/smile-pi/home.js ~/smile-plug-portal-web/src/views/home.js
 sudo rm ~/smile-plug-portal-web/src/templates/navbar.html
 cp ~/smile-pi/setup_files/navbar_usb.html ~/smile-plug-portal-web/src/templates/navbar.html
 
-rm ~/smile-plug-portal-web/src/templates/about.html
+sudo rm ~/smile-plug-portal-web/src/templates/about.html
 cp ~/smile-pi/setup_files/about-edify.html ~/smile-plug-portal-web/src/templates/about.html
 
 cd ~/smile-plug-portal-web/
