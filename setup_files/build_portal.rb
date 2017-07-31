@@ -65,7 +65,7 @@ home_js = "(function (app) {
                 id: \"wikipedia\",
                 launch: \"Find Information\",
                 image: img_dir + \"wikipedia.png\",
-                description: \"Wikipedia is the world's largest collaborative encyclopedia. This selection of articles for schools is searchable and contains 6000 articles, 26 million words and 50,000 images!\"
+                description: \"Wikipedia is the world's largest collaborative encyclopedia.\"
             });
             this.apps.push({
                 title: \"Khan Academy\",
@@ -121,7 +121,7 @@ if (id == \"smile\") {
     window.open(window.location.origin + \"/smileService/auth/lti?user=\" + this.userName + \"&UUID=\" + app.localStorage.getItem(\"who_uuid\"));
 } else if (id == \"wikipedia\") {
     logger.info(\"navigating to wikipeda\");
-    window.open(window.location.origin + \":8001/wikipedia_en_for_schools_opt_2013/\");
+    window.open(window.location.origin + \":8001/\");
 } else if (id == \"khan\") {
     logger.info(\"navigating to khan\");
     window.open(window.location.origin + \":8008/\");
