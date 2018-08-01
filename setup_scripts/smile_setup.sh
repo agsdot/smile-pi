@@ -7,12 +7,59 @@ sudo apt-get --yes --force-yes install redis-server
 sudo npm install --unsafe-perm -g hiredis
 sudo npm install --unsafe-perm -g redis
 
-echo "install couchdb"
-sudo apt-get --yes --force-yes install couchdb
+##echo "install couchdb"
+##sudo apt-get --yes --force-yes install couchdb
 
-#echo "install elasticsearch"
-#sudo pacman -S --noconfirm --needed elasticsearch
+# couchdb has to be installed manually in raspbian stretch
+# https://www.hackster.io/mehealth-ch/installing-couchdb-on-raspbian-stretch-ccb2a7
+wget http://packages.erlang-solutions.com/debian/erlang_solutions.asc
+sudo apt-key add erlang_solutions.asc
+sudo apt-get update
 
+sudo apt-get --no-install-recommends -y install build-essential \
+pkg-config erlang libicu-dev \
+libmozjs185-dev libcurl4-openssl-dev
+
+sudo useradd -d /home/couchdb couchdb
+sudo mkdir /home/couchdb
+sudo chown couchdb:couchdb /home/couchdb
+
+cd
+wget http://apache.mirrors.lucidnetworks.net/couchdb/source/1.7.2/apache-couchdb-1.7.2.tar.gz
+tar -zxvf apache-couchdb-1.7.2.tar.gz
+cd apache-couchdb-1.7.2/
+
+./configure
+make release
+
+cd ./rel/couchdb/
+sudo cp -Rp * /home/couchdb
+
+cd /home/couchdb
+
+sudo make install
+
+sudo sed -i 's@#bind_address = 127.0.0.1@bind_address = 0.0.0.0@' /home/couchdb/etc/couchdb/local.ini
+
+sudo chown -R couchdb:couchdb /home/couchdb
+sudo chown -R couchdb:couchdb /usr/local/etc/couchdb/
+sudo chown -R couchdb:couchdb /usr/local/var/log/couchdb/
+sudo chown -R couchdb:couchdb /usr/local/var/lib/couchdb/
+sudo chown -R couchdb:couchdb /usr/local/var/run/couchdb/
+sudo chown -R couchdb:couchdb /home/couchdb
+
+# for setup and local testing of running the service
+#sudo -i -u couchdb /home/couchdb/bin/couchdb
+
+cd /home/pi/smile-pi/setup_files/
+sudo cp couchdb.service /usr/lib/systemd/system/couchdb.service
+sudo chmod 644 /lib/systemd/system/couchdb.service
+
+######
+
+##echo "install elasticsearch"
+##sudo pacman -S --noconfirm --needed elasticsearch
+#
 echo "clone the plug branch of the smile_v2 repo"
 
 if [ ! -d "~/smile_v2" ]; then
