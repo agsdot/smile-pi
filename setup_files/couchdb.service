@@ -1,0 +1,12 @@
+[Unit]
+Description=CouchDB Service
+After=network.target
+
+[Service]
+Type=idle
+User=couchdb
+Restart=always
+ExecStart=/home/couchdb/bin/couchdb
+
+[Install]
+WantedBy=default.target
