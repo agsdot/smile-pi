@@ -73,7 +73,7 @@ fi
 echo "setup smile_backend systemd service"
 cp ~/smile_v2/vagrant/smile_backend.service /tmp/smile_backend.service
 sed -i 's@/vagrant@'"$HOME"/smile_v2'@' /tmp/smile_backend.service
-sed -i 's@/usr/bin/node@'"$HOME"/.node_modules/bin/node'@' /tmp/smile_backend.service
+#sed -i 's@/usr/bin/node@'"$HOME"/.node_modules/bin/node'@' /tmp/smile_backend.service
 sudo cp /tmp/smile_backend.service /usr/lib/systemd/system/smile_backend.service
 
 #echo "configure elasticsearch"
