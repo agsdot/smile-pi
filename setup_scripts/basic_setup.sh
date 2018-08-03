@@ -7,7 +7,9 @@ if [ -f "/usr/lib/systemd/system/create_ap.service" ]; then
   echo "re-download a fresh create_ap.service template and reconfigure"
   cd ~
   rm -rf ~/smile-pi
-  git clone https://github.com/canuk/smile-pi
+  #git clone https://github.com/canuk/smile-pi
+  git clone https://github.com/agsdot/vagrant-archbox ~/smile-pi
+  cd ~/smile-pi
 fi
 
 if ( ! grep -q 'gitprompt.sh' ~/.bashrc ); then

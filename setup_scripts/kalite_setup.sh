@@ -48,7 +48,7 @@ echo "DO_NOT_RELOAD_CONTENT_CACHE_AT_STARTUP = False" >> ~/.kalite/settings.py
 
 cd ~
 rm -rf ~/smile-pi
-git clone https://github.com/canuk/smile-pi
+git clone https://github.com/agsdot/smile-pi
 
 # sudo cp ~/smile-pi/setup_files/kalite.service /usr/lib/systemd/system/
 # sudo systemctl enable kalite

@@ -25,7 +25,7 @@ echo " "
 if [ ! -d $NON_ROOT_HOME/smile-pi ]; then
   echo "get me some vagrant - archbox stuff"
   cd $NON_ROOT_HOME
-  git clone https://github.com/canuk/smile-pi $NON_ROOT_HOME/smile-pi
+  git clone https://github.com/agsdot/smile-pi $NON_ROOT_HOME/smile-pi
   chown -R $NON_ROOT_USER:$NON_ROOT_USER $NON_ROOT_HOME/smile-pi
 fi
 
