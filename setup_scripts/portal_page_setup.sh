@@ -19,7 +19,7 @@ sudo \cp /usr/share/nginx/html/index.html /usr/share/nginx/html/index_original.h
 
 cd
 rm -rf ~/smile-pi
-git clone https://github.com/canuk/smile-pi
+git clone https://github.com/agsdot/smile-pi
 
 echo "prepare the portal page"
 

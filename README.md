@@ -8,7 +8,7 @@ On a rpi3, login in as root (the image should have a minimal amount of packages 
 
 `sudo passwd`
 
-  - curl -O https://raw.githubusercontent.com/canuk/smile-pi/master/bootstrap.sh
+  - curl -O https://raw.githubusercontent.com/agsdot/smile-pi/master/bootstrap.sh
   - chmod +x bootstrap.sh
   - sh bootstrap.sh
 
