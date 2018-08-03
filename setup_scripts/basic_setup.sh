@@ -50,9 +50,9 @@ sudo apt-get --yes --force-yes install ruby
 sudo apt-get --yes --force-yes install ruby-dev
 echo "done with rubies and pythons"
 
-#curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt-get install -y nodejs
-sudo apt-get install -y npm
+#sudo apt-get install -y npm
 
 if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
