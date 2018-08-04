@@ -52,7 +52,11 @@ cp ~/smile-pi/home.js ~/smile-plug-portal-web/src/views/home.js
 
 #jake build
 cd ~/smile-plug-portal-web/
- jake build
+jake build
+# some jake issue copying contents of /tmp to /target
+
+rm -rf target/assets/*
+cp -r tmp/assets/* target/assets/
 
 cd ~/smile-plug-portal-web/target/
 
