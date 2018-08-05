@@ -17,18 +17,18 @@ sudo wget https://learningequality.org/r/deb-pi-installer-0-17 --no-check-certif
 # Install the .deb
 sudo dpkg -i ka-lite-raspberry-pi*.deb
 
-# echo "downloading english content pack for kalite"
-# cd ~/kalite_files
-# wget http://pantry.learningequality.org/downloads/ka-lite/0.17/content/contentpacks/en.zip
-#
-# cd ~/kalite_files
-# #(download file by torrenting it)
-# echo "downloading and torrenting a 38 gb file"
-# echo "if at all possible try to seed/torrent this file from another nearby computer on the same subnet, it should expedite the process"
-# echo "http://pantry.learningequality.org/downloads/ka-lite/0.16/content/ka-lite-0.16-resized-videos-english.torrent"
-# wget http://pantry.learningequality.org/downloads/ka-lite/0.17/content/ka-lite-0.17-resized-videos-english.torrent
-# sudo apt-get --yes --force-yes aria2
-# aria2c ka-lite-0.17-resized-videos-english.torrent --seed-time=0
+echo "downloading english content pack for kalite"
+cd ~/kalite_files
+wget http://pantry.learningequality.org/downloads/ka-lite/0.17/content/contentpacks/en.zip
+
+cd ~/kalite_files
+#(download file by torrenting it)
+echo "downloading and torrenting a 38 gb file"
+echo "if at all possible try to seed/torrent this file from another nearby computer on the same subnet, it should expedite the process"
+echo "http://pantry.learningequality.org/downloads/ka-lite/0.17/content/ka-lite-0.17-resized-videos-english.torrent"
+wget http://pantry.learningequality.org/downloads/ka-lite/0.17/content/ka-lite-0.17-resized-videos-english.torrent
+sudo apt-get --yes --force-yes aria2
+aria2c ka-lite-0.17-resized-videos-english.torrent --seed-time=0
 
 echo "move videos in ~/.kalite/content directory"
 mv ~/.kalite/content/ ~/.kalite/content_backup/
