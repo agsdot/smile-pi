@@ -95,11 +95,13 @@ sudo apt-get --yes --force-yes install nginx
 echo "setup create_ap"
 #note to self, Raspbian Jesse Lite already uses systemd
 LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
+ETH0_NAME="$(ip addr | grep 2: | awk '{print $2}' | tail -1  | sed s/://g)"
 
 cd ~/smile-pi/setup_files/
 sudo rm -rf /usr/lib/systemd/system/create_ap.service
 sudo cp -rf create_ap.service /usr/lib/systemd/system/create_ap.service
 sudo sed -i 's@ SMILE @ SMILE_'"$LAST_FOUR_MAC_ADDRESS"' @' /usr/lib/systemd/system/create_ap.service
+sudo sed -i 's@ eth0 @ '"$ETH0_NAME"' @' /usr/lib/systemd/system/create_ap.service
 
 # If not vagrant, i.e. booting up a rpi3
 #if [ ! -d /vagrant ]; then
