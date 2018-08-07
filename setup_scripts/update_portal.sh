@@ -54,6 +54,7 @@ sudo rm /usr/share/nginx/html/assets/get-wifimac.php
 sudo \cp -r ~/smile-pi/setup_files/get-wifimac.php /usr/share/nginx/html/assets/
 
 echo "restart nginx"
+sudo systemctl daemon-reload
 sudo systemctl restart nginx
 
 cd; cd -

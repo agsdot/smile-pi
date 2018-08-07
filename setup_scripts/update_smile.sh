@@ -14,7 +14,9 @@ cd ~/smile_v2/backend/
 # version of hiredis can be changed in package.json
 sudo sed -i 's@0.1.17@0.5.0@' package.json
 
-PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install
+#no reason to use the below npm anymore, just use the global npm, archlinuxarm legacy stuff
+#PATH="$PATH:$HOME/.node_modules/bin" $HOME/.node_modules/bin/npm install
+npm install
 
 echo "npm packages put in"
 
