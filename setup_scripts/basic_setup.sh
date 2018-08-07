@@ -94,6 +94,7 @@ sudo npm install -g node-gyp
 
 echo "install nginx"
 sudo apt-get --yes --force-yes install nginx
+sudo apt-get --yes --force-yes install nginx-extras
 
 echo "setup create_ap"
 #note to self, Raspbian Jesse Lite already uses systemd

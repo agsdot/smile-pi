@@ -1,3 +1,7 @@
+# https://fancyte.ch/nginx-unknown-directive-after-upgrading-to-ubuntu-18-lts/
+# get fancyindex directive to work
+# FancyIndex module
+load_module "/usr/share/nginx/modules/ngx_http_fancyindex_module.so";
 
 user www-data www-data;
 worker_processes  1;
