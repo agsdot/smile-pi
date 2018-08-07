@@ -109,6 +109,7 @@ sudo sed -i 's@ eth0 @ '"$ETH0_NAME"' @' /usr/lib/systemd/system/create_ap.servi
 # If not vagrant, i.e. booting up a rpi3
 #if [ ! -d /vagrant ]; then
   echo "systemctl for create_ap"
+  sudo systemctl daemon-reload
   sudo systemctl enable create_ap
   sudo systemctl stop create_ap
   sudo systemctl start create_ap
@@ -136,6 +137,7 @@ echo "hosts file overwritten"
 sudo chmod +755 $HOME
 
 echo "systemctl for nginx"
+sudo systemctl daemon-reload
 sudo systemctl enable nginx
 sudo systemctl stop nginx
 sudo systemctl start nginx

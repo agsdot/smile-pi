@@ -69,6 +69,7 @@ cd ~/smile-pi/setup_files/
 #http://uranio-235.github.io/blog/2016/07/31/kiwix-como-servicio/
 sudo cp -rf kiwix.service /usr/lib/systemd/system/kiwix.service
 
+sudo systemctl daemon-reload
 echo "systemctl for kiwix"
 sudo systemctl enable kiwix
 sudo systemctl start kiwix

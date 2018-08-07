@@ -144,6 +144,8 @@ sudo npm update
 
 ###
 
+sudo systemctl daemon-reload
+
 echo "systemctl for couch"
 sudo systemctl enable couchdb
 sudo systemctl start couchdb

@@ -43,6 +43,9 @@ sudo i2cdetect -y 1
 
 echo "systemctl service configurations"
 sudo cp /home/pi/smile-pi/setup_files/smileled.service /usr/lib/systemd/system/smileled.service
+
+sudo systemctl daemon-reload
+
 sudo systemctl enable smileled
 sudo systemctl start smileled
 

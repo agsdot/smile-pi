@@ -79,11 +79,13 @@ echo "install and configure php tools needed for the shutdown / reboot script"
 echo "nginx php configurations and c installation"
 
 sudo apt-get --yes --force-yes install php-fpm
+sudo systemctl daemon-reload
 sudo systemctl enable php7.0-fpm
 
 sudo \cp ~/smile-pi/setup_files/nginx.conf.rpi3 /etc/nginx/nginx.conf
 sudo \cp ~/smile-pi/setup_files/fastcgi-php.conf.rpi3 /etc/nginx/snippets/fastcgi-php.conf
 
+sudo systemctl daemon-reload
 sudo systemctl stop nginx
 sudo systemctl stop php7.0-fpm
 
