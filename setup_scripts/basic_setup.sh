@@ -79,6 +79,8 @@ sudo npm install -g npm
 
 #https://github.com/oblique/create_ap
 echo "install create_ap"
+cd
+rm -rf ~/create_ap
 sudo apt-get --yes --force-yes install hostapd dnsmasq
 git clone https://github.com/oblique/create_ap ~/create_ap
 cd create_ap
@@ -119,6 +121,7 @@ sudo sed -i 's@ eth0 @ '"$ETH0_NAME"' @' /usr/lib/systemd/system/create_ap.servi
 echo "setup nginx conf files"
 
 cd ~
+sudo rm -rf /home/pi/smile_v2
 git clone https://bitbucket.org/smileconsortium/smile_v2.git
 cd smile_v2
 git checkout -b plug origin/plug
