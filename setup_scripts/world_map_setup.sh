@@ -2,7 +2,7 @@
 cd
 
 echo "Install SQLite"
-sudo apt-get --yes --force-yes install php5-sqlite
+sudo apt-get --yes --force-yes install php7.0-sqlite
 
 sudo rsync -Pavz rsync://dev.worldpossible.org/rachelmods/en-worldmap-10 /usr/share/nginx/html/world-map
 sudo mv /usr/share/nginx/html/world-map/map.html /usr/share/nginx/html/world-map/index.html
