@@ -2,22 +2,33 @@
 
 echo "setup ck-12 pdf textbooks"
 
-
 sudo apt-get --yes --force-yes install ghostscript
 #sudo pacman -S imagemagick --noconfirm --needed
-sudo apt-get --yes --force-yes install aria2
+#sudo apt-get --yes --force-yes install aria2
 
 #might be needed for gs to work, display
 #sudo pacman -S xorg-server   --noconfirm --needed
 #sudo pacman -S xorg-xrefresh --noconfirm --needed
 
 cd
-rm -rf ck12
-mkdir ck12
+#rm -rf ck12
+mkdir -p ck12
 cd ck12
+
+# the torrent is no longer reliable
 # https://archive.org/details/ck12_free_text_books_schwarzenegger_cc_by_sa
-wget https://archive.org/download/ck12_free_text_books_schwarzenegger_cc_by_sa/ck12_free_text_books_schwarzenegger_cc_by_sa_archive.torrent
-aria2c ck12_free_text_books_schwarzenegger_cc_by_sa_archive.torrent --seed-time=0
+# wget https://archive.org/download/ck12_free_text_books_schwarzenegger_cc_by_sa/ck12_free_text_books_schwarzenegger_cc_by_sa_archive.torrent
+# aria2c ck12_free_text_books_schwarzenegger_cc_by_sa_archive.torrent --seed-time=0
+
+# use wget to get the zip file of the pdfs
+#https://stackoverflow.com/questions/4686464/how-to-show-wget-progress-bar-only
+wget --help | grep -q '\--show-progress' && \
+  _PROGRESS_OPT="-q --show-progress" || _PROGRESS_OPT=""
+
+#https://unix.stackexchange.com/questions/71722/wget-hangs-after-download-complete-on-exit-group quotes on the URL to keep it from hanging
+wget $_PROGRESS_OPT -O ck12_free_text_books_schwarzenegger_cc_by_sa.zip  'https://archive.org/compress/ck12_free_text_books_schwarzenegger_cc_by_sa/formats=IMAGE%20CONTAINER%20PDF&file=/ck12_free_text_books_schwarzenegger_cc_by_sa.zip' -o /dev/null
+#https://stackoverflow.com/questions/8107886/create-folder-for-zip-file-and-extract-to-it
+for f in *.zip; do unzip -d "${f%*.zip}" "$f"; done
 
 # http://stackoverflow.com/questions/10523415/bash-script-to-execute-command-on-all-files-in-directory
 #for file in /dir/*
