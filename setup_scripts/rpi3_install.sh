@@ -36,7 +36,8 @@ else
   "sensehat_setup.sh" "Setup if sensehat LED is attached, reboot required" OFF \
   "update_ap.sh" "Update the wireless access point name, e.g. SMILE_12AS" OFF \
   "update_portal.sh" "Update the smile portal page, refresh what the network id of the smile device is" OFF \
-  "update_smile.sh" "Update smile subsystems" OFF 3>&1 1>&2 2>&3)
+  "update_smile.sh" "Update smile subsystems" OFF \
+  "automount_setup.sh" "Automount USB script" OFF 3>&1 1>&2 2>&3)
 
   exitstatus=$?
 
