@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#https://unix.stackexchange.com/questions/197448/change-password-programmatically
+#https://stackoverflow.com/questions/27837674/changing-an-aix-password-via-script
+echo "set default login to the raspberry pi something other than pi / raspberry"
+echo 'pi:smile-pi' | sudo chpasswd
+
 echo "basic package"
 
 if [ -f "/usr/lib/systemd/system/create_ap.service" ]; then
@@ -140,11 +145,19 @@ echo "hosts file overwritten"
 # To address nginx permissions issue, $HOME/smile_v2/frontend/src/ accessibility
 sudo chmod +755 $HOME
 
+echo "make sure one can ssh into the raspberry pi"
+#https://raspberrypi.stackexchange.com/questions/73119/enabling-ssh-by-default-on-raspbian-stretch
+#https://www.raspberrypi.org/documentation/remote-access/ssh/README.md
+sudo touch /boot/ssh
+
 echo "systemctl for nginx"
 sudo systemctl daemon-reload
 sudo systemctl enable nginx
 sudo systemctl stop nginx
 sudo systemctl start nginx
+
+sudo systemctl enable ssh
+sudo systemctl start ssh
 
 cd; cd -
 cd ~/smile-pi
