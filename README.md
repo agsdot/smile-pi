@@ -1,13 +1,12 @@
 This set of scripts will prep a microSD card to be used with the [SMILE-pi](http://smile-pi.org) Project.
 
-First create an [Raspbian Jessie Lite](https://www.raspberrypi.org/downloads/raspbian/) image on a microSD card.
+First create an [Raspbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/) image on a microSD card.
 
 Place the microsd in the raspberry pi and boot it up.
 
-On a rpi3, login in as root (the image should have a minimal amount of packages on it; no git, no wget, etc. However, curl is included on the image.)
+On a rpi3, login in as 'pi' (the image should have a minimal amount of packages on it; no git, no wget, etc. However, curl is included on the image.) using the default login pi:raspberry .
 
-`sudo passwd`
-
+  - sudo su
   - curl -O https://raw.githubusercontent.com/agsdot/smile-pi/master/bootstrap.sh
   - chmod +x bootstrap.sh
   - sh bootstrap.sh

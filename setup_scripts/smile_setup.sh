@@ -21,7 +21,7 @@ pkg-config erlang libicu-dev \
 libmozjs185-dev libcurl4-openssl-dev
 
 sudo useradd -d /home/couchdb couchdb
-sudo mkdir /home/couchdb
+sudo mkdir -p /home/couchdb
 sudo chown couchdb:couchdb /home/couchdb
 
 cd
