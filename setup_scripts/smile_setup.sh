@@ -124,7 +124,11 @@ cd ~/smile_v2/backend/
 # version of hiredis can be changed in package.json
 sudo sed -i 's@0.1.17@0.5.0@' package.json
 
-sudo npm install
+#https://github.com/nodejs/node-gyp/issues/454
+#user "root" does not have permission to access the dev dir
+#node-gyp issue on directory
+#sudo npm install
+sudo npm install --unsafe-perm
 
 echo "npm packages put in"
 
