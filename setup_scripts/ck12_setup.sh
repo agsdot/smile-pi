@@ -91,6 +91,8 @@ mv bookshelf_maker ck12
 sudo rm -rf /usr/share/nginx/html/ck12
 
 sudo mv ck12 /usr/share/nginx/html/
+sudo cp ~/smile-pi/portal_data_files/ck12.txt /usr/share/nginx/html/ck12/portal_data.txt
+sudo cp ~/smile-pi/portal_data_files/ck12.png /usr/share/nginx/html/ck12/
 
 echo "done"
 
