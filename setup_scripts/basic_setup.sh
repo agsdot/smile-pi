@@ -49,17 +49,18 @@ then
   echo "if [ -f ~/.bash_aliases ]; then source ~/.bash_aliases; fi" >> ~/.bashrc
 fi
 
-echo "installing rubies and javascripts"
-sudo apt-get --yes --force-yes install nodejs
-sudo apt-get --yes --force-yes install python
-sudo apt-get --yes --force-yes install python-pip
-sudo apt-get --yes --force-yes install ruby
-sudo apt-get --yes --force-yes install ruby-dev
-echo "done with rubies and pythons"
-
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+# get the nodejs repo
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 #sudo apt-get install -y npm
+
+echo "installing rubies and javascripts"
+sudo apt-get -y install nodejs
+sudo apt-get -y install python
+sudo apt-get -y install python-pip
+sudo apt-get -y install ruby
+sudo apt-get -y install ruby-dev
+echo "done with rubies and pythons"
 
 if [ ! -f ~/.npmrc ]; then
   echo "setup ~/.npmrc"
@@ -86,7 +87,7 @@ sudo npm install -g npm
 echo "install create_ap"
 cd
 rm -rf ~/create_ap
-sudo apt-get --yes --force-yes install hostapd dnsmasq
+sudo apt-get -y install hostapd dnsmasq
 git clone https://github.com/oblique/create_ap ~/create_ap
 cd create_ap
 sudo make install
