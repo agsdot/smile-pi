@@ -88,6 +88,10 @@ echo "install create_ap"
 cd
 rm -rf ~/create_ap
 sudo apt-get -y install hostapd dnsmasq
+# a started hostapd service interferes with create_ap starting up one of itself
+sudo systemctl stop hostapd
+sudo systemctl disable hostapd
+
 git clone https://github.com/oblique/create_ap ~/create_ap
 cd create_ap
 sudo make install
@@ -101,13 +105,17 @@ echo "install node-gyp"
 sudo npm install -g node-gyp
 
 echo "install nginx"
-sudo apt-get --yes --force-yes install nginx
-sudo apt-get --yes --force-yes install nginx-extras
+sudo apt-get -y install nginx
+sudo apt-get -y install nginx-extras
 
 echo "setup create_ap"
 #note to self, Raspbian Jesse Lite already uses systemd
 LAST_FOUR_MAC_ADDRESS="$(ip addr | grep link/ether | awk '{print $2}' | tail -1  | sed s/://g | tr '[:lower:]' '[:upper:]' | tail -c 5)"
+#rpi3
 ETH0_NAME="$(ip addr | grep 2: | awk '{print $2}' | tail -1  | sed s/://g)"
+
+#rpi4
+ETH0_NAME="eth0"
 
 cd ~/smile-pi/setup_files/
 sudo rm -rf /usr/lib/systemd/system/create_ap.service
