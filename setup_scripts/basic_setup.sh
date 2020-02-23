@@ -87,8 +87,10 @@ sudo npm install -g npm
 echo "install create_ap"
 cd
 rm -rf ~/create_ap
-sudo apt-get -y install hostapd dnsmasq
+sudo apt-get install -y hostapd
+sudo apt-get install -y dnsmasq
 # a started hostapd service interferes with create_ap starting up one of itself
+sudo systemctl unmask hostapd
 sudo systemctl stop hostapd
 sudo systemctl disable hostapd
 
